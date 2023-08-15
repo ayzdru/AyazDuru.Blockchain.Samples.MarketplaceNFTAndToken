@@ -1,0 +1,3673 @@
+{
+  "contractName": "IMarketplace",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timeBuffer",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "bidBufferBps",
+          "type": "uint256"
+        }
+      ],
+      "name": "AuctionBuffersUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "closer",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bool",
+          "name": "cancelled",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "auctionCreator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "winningBidder",
+          "type": "address"
+        }
+      ],
+      "name": "AuctionClosed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "platformFeeRecipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "flatFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "FlatPlatformFeeUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "assetContract",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "lister",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "listingId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "tokenOwner",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "assetContract",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "startTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "endTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "quantity",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "currency",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "reservePricePerToken",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "buyoutPricePerToken",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum IMarketplace.TokenType",
+              "name": "tokenType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "enum IMarketplace.ListingType",
+              "name": "listingType",
+              "type": "uint8"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IMarketplace.Listing",
+          "name": "listing",
+          "type": "tuple"
+        }
+      ],
+      "name": "ListingAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "listingCreator",
+          "type": "address"
+        }
+      ],
+      "name": "ListingRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "listingCreator",
+          "type": "address"
+        }
+      ],
+      "name": "ListingUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "offeror",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "enum IMarketplace.ListingType",
+          "name": "listingType",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "quantityWanted",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalOfferAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "currency",
+          "type": "address"
+        }
+      ],
+      "name": "NewOffer",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "assetContract",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "lister",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "quantityBought",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalPricePaid",
+          "type": "uint256"
+        }
+      ],
+      "name": "NewSale",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "platformFeeRecipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "platformFeeBps",
+          "type": "uint256"
+        }
+      ],
+      "name": "PlatformFeeInfoUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "enum IPlatformFee.PlatformFeeType",
+          "name": "feeType",
+          "type": "uint8"
+        }
+      ],
+      "name": "PlatformFeeTypeUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "contractType",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractVersion",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPlatformFeeInfo",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_uri",
+          "type": "string"
+        }
+      ],
+      "name": "setContractURI",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_platformFeeRecipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_platformFeeBps",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPlatformFeeInfo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "assetContract",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "startTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "secondsUntilEndTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "quantityToList",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "currencyToAccept",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "reservePricePerToken",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "buyoutPricePerToken",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum IMarketplace.ListingType",
+              "name": "listingType",
+              "type": "uint8"
+            }
+          ],
+          "internalType": "struct IMarketplace.ListingParameters",
+          "name": "_params",
+          "type": "tuple"
+        }
+      ],
+      "name": "createListing",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_listingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_quantityToList",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_reservePricePerToken",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_buyoutPricePerToken",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_currencyToAccept",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_secondsUntilEndTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateListing",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_listingId",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancelDirectListing",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_listingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_buyFor",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_quantity",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_currency",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_totalPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "buy",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_listingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_quantityWanted",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_currency",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_pricePerToken",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_expirationTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "offer",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_listingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_offeror",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_currency",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_totalPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptOffer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_listingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_closeFor",
+          "type": "address"
+        }
+      ],
+      "name": "closeAuction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timeBuffer\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"bidBufferBps\",\"type\":\"uint256\"}],\"name\":\"AuctionBuffersUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"closer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"bool\",\"name\":\"cancelled\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"auctionCreator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"winningBidder\",\"type\":\"address\"}],\"name\":\"AuctionClosed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"platformFeeRecipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"flatFee\",\"type\":\"uint256\"}],\"name\":\"FlatPlatformFeeUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"assetContract\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"lister\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"tokenOwner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"assetContract\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"currency\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"reservePricePerToken\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"buyoutPricePerToken\",\"type\":\"uint256\"},{\"internalType\":\"enum IMarketplace.TokenType\",\"name\":\"tokenType\",\"type\":\"uint8\"},{\"internalType\":\"enum IMarketplace.ListingType\",\"name\":\"listingType\",\"type\":\"uint8\"}],\"indexed\":false,\"internalType\":\"struct IMarketplace.Listing\",\"name\":\"listing\",\"type\":\"tuple\"}],\"name\":\"ListingAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"listingCreator\",\"type\":\"address\"}],\"name\":\"ListingRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"listingCreator\",\"type\":\"address\"}],\"name\":\"ListingUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"offeror\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"enum IMarketplace.ListingType\",\"name\":\"listingType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"quantityWanted\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"totalOfferAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currency\",\"type\":\"address\"}],\"name\":\"NewOffer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"assetContract\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"lister\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"quantityBought\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"totalPricePaid\",\"type\":\"uint256\"}],\"name\":\"NewSale\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"platformFeeRecipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"platformFeeBps\",\"type\":\"uint256\"}],\"name\":\"PlatformFeeInfoUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"enum IPlatformFee.PlatformFeeType\",\"name\":\"feeType\",\"type\":\"uint8\"}],\"name\":\"PlatformFeeTypeUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_listingId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_offeror\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_currency\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_totalPrice\",\"type\":\"uint256\"}],\"name\":\"acceptOffer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_listingId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_buyFor\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_quantity\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_currency\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_totalPrice\",\"type\":\"uint256\"}],\"name\":\"buy\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_listingId\",\"type\":\"uint256\"}],\"name\":\"cancelDirectListing\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_listingId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_closeFor\",\"type\":\"address\"}],\"name\":\"closeAuction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractType\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractVersion\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"assetContract\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"secondsUntilEndTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"quantityToList\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"currencyToAccept\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"reservePricePerToken\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"buyoutPricePerToken\",\"type\":\"uint256\"},{\"internalType\":\"enum IMarketplace.ListingType\",\"name\":\"listingType\",\"type\":\"uint8\"}],\"internalType\":\"struct IMarketplace.ListingParameters\",\"name\":\"_params\",\"type\":\"tuple\"}],\"name\":\"createListing\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getPlatformFeeInfo\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_listingId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_quantityWanted\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_currency\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_pricePerToken\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_expirationTimestamp\",\"type\":\"uint256\"}],\"name\":\"offer\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_uri\",\"type\":\"string\"}],\"name\":\"setContractURI\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_platformFeeRecipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_platformFeeBps\",\"type\":\"uint256\"}],\"name\":\"setPlatformFeeInfo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_listingId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_quantityToList\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_reservePricePerToken\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_buyoutPricePerToken\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_currencyToAccept\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_secondsUntilEndTime\",\"type\":\"uint256\"}],\"name\":\"updateListing\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"AuctionBuffersUpdated(uint256,uint256)\":{\"details\":\"Emitted when auction buffers are updated.\"},\"AuctionClosed(uint256,address,bool,address,address)\":{\"details\":\"Emitted when an auction is closed.\"},\"FlatPlatformFeeUpdated(address,uint256)\":{\"details\":\"Emitted when the flat platform fee is updated.\"},\"ListingAdded(uint256,address,address,(uint256,address,address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint8,uint8))\":{\"details\":\"Emitted when a new listing is created.\"},\"ListingRemoved(uint256,address)\":{\"details\":\"Emitted when a listing is cancelled.\"},\"ListingUpdated(uint256,address)\":{\"details\":\"Emitted when the parameters of a listing are updated.\"},\"NewOffer(uint256,address,uint8,uint256,uint256,address)\":{\"details\":\"Emitted when (1) a new offer is made to a direct listing, or (2) when a new bid is made in an auction.\"},\"NewSale(uint256,address,address,address,uint256,uint256)\":{\"details\":\"Emitted when a buyer buys from a direct listing, or a lister accepts some      buyer's offer to their direct listing.\"},\"PlatformFeeInfoUpdated(address,uint256)\":{\"details\":\"Emitted when fee on primary sales is updated.\"},\"PlatformFeeTypeUpdated(uint8)\":{\"details\":\"Emitted when the platform fee type is updated.\"}},\"kind\":\"dev\",\"methods\":{\"acceptOffer(uint256,address,address,uint256)\":{\"params\":{\"_currency\":\"The currency of the offer that is to be accepted.\",\"_listingId\":\"The unique ID of the listing for which to accept the offer.\",\"_offeror\":\"The address of the buyer whose offer is to be accepted.\",\"_totalPrice\":\"The total price of the offer that is to be accepted.\"}},\"buy(uint256,address,uint256,address,uint256)\":{\"details\":\"A sale will fail to execute if either:          (1) buyer does not own or has not approved Marketplace to transfer the appropriate              amount of currency (or hasn't sent the appropriate amount of native tokens)          (2) the lister does not own or has removed Markeplace's              approval to transfer the tokens listed for sale.\",\"params\":{\"_buyFor\":\"The receiver of the NFT being bought.\",\"_currency\":\"The currency to pay the price in.\",\"_listingId\":\"The uid of the direct lisitng to buy from.\",\"_quantity\":\"The amount of NFTs to buy from the direct listing.\",\"_totalPrice\":\"The total price to pay for the tokens being bought.\"}},\"cancelDirectListing(uint256)\":{\"params\":{\"_listingId\":\"The unique Id of the lisitng to cancel.\"}},\"closeAuction(uint256,address)\":{\"params\":{\"_closeFor\":\"For whom the auction is being closed - the auction creator or winning bidder.\",\"_listingId\":\"The uid of the listing (the auction to close).\"}},\"contractType()\":{\"details\":\"Returns the module type of the contract.\"},\"contractURI()\":{\"details\":\"Returns the metadata URI of the contract.\"},\"contractVersion()\":{\"details\":\"Returns the version of the contract.\"},\"createListing((address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint8))\":{\"details\":\"NFTs to list for sale in an auction are escrowed in Marketplace. For direct listings, the contract       only checks whether the listing's creator owns and has approved Marketplace to transfer the NFTs to list.\",\"params\":{\"_params\":\"The parameters that govern the listing to be created.\"}},\"getPlatformFeeInfo()\":{\"details\":\"Returns the platform fee bps and recipient.\"},\"offer(uint256,uint256,address,uint256,uint256)\":{\"details\":\"Each (address, listing ID) pair maps to a single unique offer. So e.g. if a buyer makes       makes two offers to the same direct listing, the last offer is counted as the buyer's       offer to that listing.\",\"params\":{\"_currency\":\"For auction listings: the 'currency of the bid' is the currency accepted                           by the auction, regardless of the value of `_currency` passed. For direct                           listings: this is the currency in which the offer is made.\",\"_expirationTimestamp\":\"For aution listings: inapplicable. For direct listings: The timestamp after which                              the seller can no longer accept the offer.\",\"_listingId\":\"The unique ID of the lisitng to make an offer/bid to.\",\"_pricePerToken\":\"For direct listings: offered price per token. For auction listings: the bid                           amount per token. The total offer/bid amount is `_quantityWanted * _pricePerToken`.\",\"_quantityWanted\":\"For auction listings: the 'quantity wanted' is the total amount of NFTs                           being auctioned, regardless of the value of `_quantityWanted` passed.                           For direct listings: `_quantityWanted` is the quantity of NFTs from the                           listing, for which the offer is being made.\"}},\"setContractURI(string)\":{\"details\":\"Sets contract URI for the storefront-level metadata of the contract.       Only module admin can call this function.\"},\"setPlatformFeeInfo(address,uint256)\":{\"details\":\"Lets a module admin update the fees on primary sales.\"},\"updateListing(uint256,uint256,uint256,uint256,address,uint256,uint256)\":{\"params\":{\"_buyoutPricePerToken\":\"For direct listings: interpreted as 'price per token' listed. For auctions: if                               `buyoutPricePerToken` is greater than 0, and a bidder's bid is at least as great as                               `buyoutPricePerToken * quantityToList`, the bidder wins the auction, and the auction                               is closed.\",\"_currencyToAccept\":\"For direct listings: the currency in which a buyer must pay the listing's fixed price                               to buy the NFT(s). For auctions: the currency in which the bidders must make bids.\",\"_listingId\":\"The uid of the lisitng to edit.\",\"_quantityToList\":\"The amount of NFTs to list for sale in the listing. For direct lisitngs, the contract                               only checks whether the listing creator owns and has approved Marketplace to transfer                               `_quantityToList` amount of NFTs to list for sale. For auction listings, the contract                               ensures that exactly `_quantityToList` amount of NFTs to list are escrowed.\",\"_reservePricePerToken\":\"For direct listings: this value is ignored. For auctions: the minimum bid amount of                               the auction is `reservePricePerToken * quantityToList`\",\"_secondsUntilEndTime\":\"No. of seconds after the provided `_startTime`, after which the listing is inactive.                               For direct listings: 'inactive' means NFTs cannot be bought from the listing.                               For auctions: 'inactive' means bids can no longer be made in the auction.\",\"_startTime\":\"The unix timestamp after which listing is active. For direct listings:                               'active' means NFTs can be bought from the listing. For auctions,                               'active' means bids can be made in the auction.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"acceptOffer(uint256,address,address,uint256)\":{\"notice\":\"Lets a listing's creator accept an offer to their direct listing.\"},\"buy(uint256,address,uint256,address,uint256)\":{\"notice\":\"Lets someone buy a given quantity of tokens from a direct listing by paying the fixed price.\"},\"cancelDirectListing(uint256)\":{\"notice\":\"Lets a direct listing creator cancel their listing.\"},\"closeAuction(uint256,address)\":{\"notice\":\"Lets any account close an auction on behalf of either the (1) auction's creator, or (2) winning bidder.              For (1): The auction creator is sent the the winning bid amount.              For (2): The winning bidder is sent the auctioned NFTs.\"},\"createListing((address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint8))\":{\"notice\":\"Lets a token owner list tokens (ERC 721 or ERC 1155) for sale in a direct listing, or an auction.\"},\"offer(uint256,uint256,address,uint256,uint256)\":{\"notice\":\"Lets someone make an offer to a direct listing, or bid in an auction.\"},\"updateListing(uint256,uint256,uint256,uint256,address,uint256,uint256)\":{\"notice\":\"Lets a listing's creator edit the listing's parameters. A direct listing can be edited whenever.          An auction listing cannot be edited after the auction has started.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@thirdweb-dev/contracts/interfaces/marketplace/IMarketplace.sol\":\"IMarketplace\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"@thirdweb-dev/contracts/extension/interface/IPlatformFee.sol\":{\"keccak256\":\"0x8c23c2a223a3b94ccce125b418e5fabfb631695d927e336512bc8dca61bbc736\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://86dd8c93e75cb3a44d64c873154ee3857b604d1b07a9e52c120870172c2e9a34\",\"dweb:/ipfs/QmWXxEi7ygoRjN8yWYfVGbfhuwVg8bkLoHNzr3xMNa1VRv\"]},\"@thirdweb-dev/contracts/interfaces/IThirdwebContract.sol\":{\"keccak256\":\"0x98ea2478723e7fd94c44f498f78e75076d306aa716ff255adf55bda2822c1e78\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://8bebec94a0c258e86877260bbecdd0b5b6052ec5de16e39f3a4b2f0ce4c0134e\",\"dweb:/ipfs/QmdVLqwwSBPiTbpLdfkcZDhHMNd1GaKgAKPE2fVk5WibrK\"]},\"@thirdweb-dev/contracts/interfaces/marketplace/IMarketplace.sol\":{\"keccak256\":\"0xb30f74e0c257d4c52da10c8872403aeb187631f7c4e816dc73a05c7aaa8bd8cb\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://c6d74b8d76e9bb34472e2a63d830d85d269a086b04b5b6779f8f2d1c1f94f9ca\",\"dweb:/ipfs/QmZH59GCNw39KhUbKCT6MWy77LLYEnfwKsCaMB2Rh1gfdR\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.11;\n\nimport \"../IThirdwebContract.sol\";\nimport \"../../extension/interface/IPlatformFee.sol\";\n\ninterface IMarketplace is IThirdwebContract, IPlatformFee {\n    /// @notice Type of the tokens that can be listed for sale.\n    enum TokenType {\n        ERC1155,\n        ERC721\n    }\n\n    /**\n     *  @notice The two types of listings.\n     *          `Direct`: NFTs listed for sale at a fixed price.\n     *          `Auction`: NFTs listed for sale in an auction.\n     */\n    enum ListingType {\n        Direct,\n        Auction\n    }\n\n    /**\n     *  @notice The information related to either (1) an offer on a direct listing, or (2) a bid in an auction.\n     *\n     *  @dev The type of the listing at ID `lisingId` determins how the `Offer` is interpreted.\n     *      If the listing is of type `Direct`, the `Offer` is interpreted as an offer to a direct listing.\n     *      If the listing is of type `Auction`, the `Offer` is interpreted as a bid in an auction.\n     *\n     *  @param listingId      The uid of the listing the offer is made to.\n     *  @param offeror        The account making the offer.\n     *  @param quantityWanted The quantity of tokens from the listing wanted by the offeror.\n     *                        This is the entire listing quantity if the listing is an auction.\n     *  @param currency       The currency in which the offer is made.\n     *  @param pricePerToken  The price per token offered to the lister.\n     *  @param expirationTimestamp The timestamp after which a seller cannot accept this offer.\n     */\n    struct Offer {\n        uint256 listingId;\n        address offeror;\n        uint256 quantityWanted;\n        address currency;\n        uint256 pricePerToken;\n        uint256 expirationTimestamp;\n    }\n\n    /**\n     *  @dev For use in `createListing` as a parameter type.\n     *\n     *  @param assetContract         The contract address of the NFT to list for sale.\n\n     *  @param tokenId               The tokenId on `assetContract` of the NFT to list for sale.\n\n     *  @param startTime             The unix timestamp after which the listing is active. For direct listings:\n     *                               'active' means NFTs can be bought from the listing. For auctions,\n     *                               'active' means bids can be made in the auction.\n     *\n     *  @param secondsUntilEndTime   No. of seconds after `startTime`, after which the listing is inactive.\n     *                               For direct listings: 'inactive' means NFTs cannot be bought from the listing.\n     *                               For auctions: 'inactive' means bids can no longer be made in the auction.\n     *\n     *  @param quantityToList        The quantity of NFT of ID `tokenId` on the given `assetContract` to list. For\n     *                               ERC 721 tokens to list for sale, the contract strictly defaults this to `1`,\n     *                               Regardless of the value of `quantityToList` passed.\n     *\n     *  @param currencyToAccept      For direct listings: the currency in which a buyer must pay the listing's fixed price\n     *                               to buy the NFT(s). For auctions: the currency in which the bidders must make bids.\n     *\n     *  @param reservePricePerToken  For direct listings: this value is ignored. For auctions: the minimum bid amount of\n     *                               the auction is `reservePricePerToken * quantityToList`\n     *\n     *  @param buyoutPricePerToken   For direct listings: interpreted as 'price per token' listed. For auctions: if\n     *                               `buyoutPricePerToken` is greater than 0, and a bidder's bid is at least as great as\n     *                               `buyoutPricePerToken * quantityToList`, the bidder wins the auction, and the auction\n     *                               is closed.\n     *\n     *  @param listingType           The type of listing to create - a direct listing or an auction.\n    **/\n    struct ListingParameters {\n        address assetContract;\n        uint256 tokenId;\n        uint256 startTime;\n        uint256 secondsUntilEndTime;\n        uint256 quantityToList;\n        address currencyToAccept;\n        uint256 reservePricePerToken;\n        uint256 buyoutPricePerToken;\n        ListingType listingType;\n    }\n\n    /**\n     *  @notice The information related to a listing; either (1) a direct listing, or (2) an auction listing.\n     *\n     *  @dev For direct listings:\n     *          (1) `reservePricePerToken` is ignored.\n     *          (2) `buyoutPricePerToken` is simply interpreted as 'price per token'.\n     *\n     *  @param listingId             The uid for the listing.\n     *\n     *  @param tokenOwner            The owner of the tokens listed for sale.  \n     *\n     *  @param assetContract         The contract address of the NFT to list for sale.\n\n     *  @param tokenId               The tokenId on `assetContract` of the NFT to list for sale.\n\n     *  @param startTime             The unix timestamp after which the listing is active. For direct listings:\n     *                               'active' means NFTs can be bought from the listing. For auctions,\n     *                               'active' means bids can be made in the auction.\n     *\n     *  @param endTime               The timestamp after which the listing is inactive.\n     *                               For direct listings: 'inactive' means NFTs cannot be bought from the listing.\n     *                               For auctions: 'inactive' means bids can no longer be made in the auction.\n     *\n     *  @param quantity              The quantity of NFT of ID `tokenId` on the given `assetContract` listed. For\n     *                               ERC 721 tokens to list for sale, the contract strictly defaults this to `1`,\n     *                               Regardless of the value of `quantityToList` passed.\n     *\n     *  @param currency              For direct listings: the currency in which a buyer must pay the listing's fixed price\n     *                               to buy the NFT(s). For auctions: the currency in which the bidders must make bids.\n     *\n     *  @param reservePricePerToken  For direct listings: this value is ignored. For auctions: the minimum bid amount of\n     *                               the auction is `reservePricePerToken * quantityToList`\n     *\n     *  @param buyoutPricePerToken   For direct listings: interpreted as 'price per token' listed. For auctions: if\n     *                               `buyoutPricePerToken` is greater than 0, and a bidder's bid is at least as great as\n     *                               `buyoutPricePerToken * quantityToList`, the bidder wins the auction, and the auction\n     *                               is closed.\n     *\n     *  @param tokenType             The type of the token(s) listed for for sale -- ERC721 or ERC1155 \n     *\n     * @param listingType            The type of listing to create - a direct listing or an auction.\n    **/\n    struct Listing {\n        uint256 listingId;\n        address tokenOwner;\n        address assetContract;\n        uint256 tokenId;\n        uint256 startTime;\n        uint256 endTime;\n        uint256 quantity;\n        address currency;\n        uint256 reservePricePerToken;\n        uint256 buyoutPricePerToken;\n        TokenType tokenType;\n        ListingType listingType;\n    }\n\n    /// @dev Emitted when a new listing is created.\n    event ListingAdded(\n        uint256 indexed listingId,\n        address indexed assetContract,\n        address indexed lister,\n        Listing listing\n    );\n\n    /// @dev Emitted when the parameters of a listing are updated.\n    event ListingUpdated(uint256 indexed listingId, address indexed listingCreator);\n\n    /// @dev Emitted when a listing is cancelled.\n    event ListingRemoved(uint256 indexed listingId, address indexed listingCreator);\n\n    /**\n     * @dev Emitted when a buyer buys from a direct listing, or a lister accepts some\n     *      buyer's offer to their direct listing.\n     */\n    event NewSale(\n        uint256 indexed listingId,\n        address indexed assetContract,\n        address indexed lister,\n        address buyer,\n        uint256 quantityBought,\n        uint256 totalPricePaid\n    );\n\n    /// @dev Emitted when (1) a new offer is made to a direct listing, or (2) when a new bid is made in an auction.\n    event NewOffer(\n        uint256 indexed listingId,\n        address indexed offeror,\n        ListingType indexed listingType,\n        uint256 quantityWanted,\n        uint256 totalOfferAmount,\n        address currency\n    );\n\n    /// @dev Emitted when an auction is closed.\n    event AuctionClosed(\n        uint256 indexed listingId,\n        address indexed closer,\n        bool indexed cancelled,\n        address auctionCreator,\n        address winningBidder\n    );\n\n    /// @dev Emitted when auction buffers are updated.\n    event AuctionBuffersUpdated(uint256 timeBuffer, uint256 bidBufferBps);\n\n    /**\n     *  @notice Lets a token owner list tokens (ERC 721 or ERC 1155) for sale in a direct listing, or an auction.\n     *\n     *  @dev NFTs to list for sale in an auction are escrowed in Marketplace. For direct listings, the contract\n     *       only checks whether the listing's creator owns and has approved Marketplace to transfer the NFTs to list.\n     *\n     *  @param _params The parameters that govern the listing to be created.\n     */\n    function createListing(ListingParameters memory _params) external;\n\n    /**\n     *  @notice Lets a listing's creator edit the listing's parameters. A direct listing can be edited whenever.\n     *          An auction listing cannot be edited after the auction has started.\n     *\n     *  @param _listingId            The uid of the lisitng to edit.\n     *\n     *  @param _quantityToList       The amount of NFTs to list for sale in the listing. For direct lisitngs, the contract\n     *                               only checks whether the listing creator owns and has approved Marketplace to transfer\n     *                               `_quantityToList` amount of NFTs to list for sale. For auction listings, the contract\n     *                               ensures that exactly `_quantityToList` amount of NFTs to list are escrowed.\n     *\n     *  @param _reservePricePerToken For direct listings: this value is ignored. For auctions: the minimum bid amount of\n     *                               the auction is `reservePricePerToken * quantityToList`\n     *\n     *  @param _buyoutPricePerToken  For direct listings: interpreted as 'price per token' listed. For auctions: if\n     *                               `buyoutPricePerToken` is greater than 0, and a bidder's bid is at least as great as\n     *                               `buyoutPricePerToken * quantityToList`, the bidder wins the auction, and the auction\n     *                               is closed.\n     *\n     *  @param _currencyToAccept     For direct listings: the currency in which a buyer must pay the listing's fixed price\n     *                               to buy the NFT(s). For auctions: the currency in which the bidders must make bids.\n     *\n     *  @param _startTime            The unix timestamp after which listing is active. For direct listings:\n     *                               'active' means NFTs can be bought from the listing. For auctions,\n     *                               'active' means bids can be made in the auction.\n     *\n     *  @param _secondsUntilEndTime  No. of seconds after the provided `_startTime`, after which the listing is inactive.\n     *                               For direct listings: 'inactive' means NFTs cannot be bought from the listing.\n     *                               For auctions: 'inactive' means bids can no longer be made in the auction.\n     */\n    function updateListing(\n        uint256 _listingId,\n        uint256 _quantityToList,\n        uint256 _reservePricePerToken,\n        uint256 _buyoutPricePerToken,\n        address _currencyToAccept,\n        uint256 _startTime,\n        uint256 _secondsUntilEndTime\n    ) external;\n\n    /**\n     *  @notice Lets a direct listing creator cancel their listing.\n     *\n     *  @param _listingId The unique Id of the lisitng to cancel.\n     */\n    function cancelDirectListing(uint256 _listingId) external;\n\n    /**\n     *  @notice Lets someone buy a given quantity of tokens from a direct listing by paying the fixed price.\n     *\n     *  @param _listingId The uid of the direct lisitng to buy from.\n     *  @param _buyFor The receiver of the NFT being bought.\n     *  @param _quantity The amount of NFTs to buy from the direct listing.\n     *  @param _currency The currency to pay the price in.\n     *  @param _totalPrice The total price to pay for the tokens being bought.\n     *\n     *  @dev A sale will fail to execute if either:\n     *          (1) buyer does not own or has not approved Marketplace to transfer the appropriate\n     *              amount of currency (or hasn't sent the appropriate amount of native tokens)\n     *\n     *          (2) the lister does not own or has removed Markeplace's\n     *              approval to transfer the tokens listed for sale.\n     */\n    function buy(\n        uint256 _listingId,\n        address _buyFor,\n        uint256 _quantity,\n        address _currency,\n        uint256 _totalPrice\n    ) external payable;\n\n    /**\n     *  @notice Lets someone make an offer to a direct listing, or bid in an auction.\n     *\n     *  @dev Each (address, listing ID) pair maps to a single unique offer. So e.g. if a buyer makes\n     *       makes two offers to the same direct listing, the last offer is counted as the buyer's\n     *       offer to that listing.\n     *\n     *  @param _listingId        The unique ID of the lisitng to make an offer/bid to.\n     *\n     *  @param _quantityWanted   For auction listings: the 'quantity wanted' is the total amount of NFTs\n     *                           being auctioned, regardless of the value of `_quantityWanted` passed.\n     *                           For direct listings: `_quantityWanted` is the quantity of NFTs from the\n     *                           listing, for which the offer is being made.\n     *\n     *  @param _currency         For auction listings: the 'currency of the bid' is the currency accepted\n     *                           by the auction, regardless of the value of `_currency` passed. For direct\n     *                           listings: this is the currency in which the offer is made.\n     *\n     *  @param _pricePerToken    For direct listings: offered price per token. For auction listings: the bid\n     *                           amount per token. The total offer/bid amount is `_quantityWanted * _pricePerToken`.\n     *\n     *  @param _expirationTimestamp For aution listings: inapplicable. For direct listings: The timestamp after which\n     *                              the seller can no longer accept the offer.\n     */\n    function offer(\n        uint256 _listingId,\n        uint256 _quantityWanted,\n        address _currency,\n        uint256 _pricePerToken,\n        uint256 _expirationTimestamp\n    ) external payable;\n\n    /**\n     * @notice Lets a listing's creator accept an offer to their direct listing.\n     * @param _listingId The unique ID of the listing for which to accept the offer.\n     * @param _offeror The address of the buyer whose offer is to be accepted.\n     * @param _currency The currency of the offer that is to be accepted.\n     * @param _totalPrice The total price of the offer that is to be accepted.\n     */\n    function acceptOffer(\n        uint256 _listingId,\n        address _offeror,\n        address _currency,\n        uint256 _totalPrice\n    ) external;\n\n    /**\n     *  @notice Lets any account close an auction on behalf of either the (1) auction's creator, or (2) winning bidder.\n     *              For (1): The auction creator is sent the the winning bid amount.\n     *              For (2): The winning bidder is sent the auctioned NFTs.\n     *\n     *  @param _listingId The uid of the listing (the auction to close).\n     *  @param _closeFor For whom the auction is being closed - the auction creator or winning bidder.\n     */\n    function closeAuction(uint256 _listingId, address _closeFor) external;\n}\n",
+  "sourcePath": "@thirdweb-dev\\contracts\\interfaces\\marketplace\\IMarketplace.sol",
+  "ast": {
+    "absolutePath": "@thirdweb-dev/contracts/interfaces/marketplace/IMarketplace.sol",
+    "exportedSymbols": {
+      "IMarketplace": [
+        11696
+      ],
+      "IPlatformFee": [
+        11164
+      ],
+      "IThirdwebContract": [
+        11440
+      ]
+    },
+    "id": 11697,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11462,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:64"
+      },
+      {
+        "absolutePath": "@thirdweb-dev/contracts/interfaces/IThirdwebContract.sol",
+        "file": "../IThirdwebContract.sol",
+        "id": 11463,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 11697,
+        "sourceUnit": 11441,
+        "src": "65:34:64",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@thirdweb-dev/contracts/extension/interface/IPlatformFee.sol",
+        "file": "../../extension/interface/IPlatformFee.sol",
+        "id": 11464,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 11697,
+        "sourceUnit": 11165,
+        "src": "100:52:64",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 11465,
+              "name": "IThirdwebContract",
+              "nameLocations": [
+                "180:17:64"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 11440,
+              "src": "180:17:64"
+            },
+            "id": 11466,
+            "nodeType": "InheritanceSpecifier",
+            "src": "180:17:64"
+          },
+          {
+            "baseName": {
+              "id": 11467,
+              "name": "IPlatformFee",
+              "nameLocations": [
+                "199:12:64"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 11164,
+              "src": "199:12:64"
+            },
+            "id": 11468,
+            "nodeType": "InheritanceSpecifier",
+            "src": "199:12:64"
+          }
+        ],
+        "canonicalName": "IMarketplace",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 11696,
+        "linearizedBaseContracts": [
+          11696,
+          11164,
+          11440
+        ],
+        "name": "IMarketplace",
+        "nameLocation": "164:12:64",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IMarketplace.TokenType",
+            "documentation": {
+              "id": 11469,
+              "nodeType": "StructuredDocumentation",
+              "src": "218:59:64",
+              "text": "@notice Type of the tokens that can be listed for sale."
+            },
+            "id": 11472,
+            "members": [
+              {
+                "id": 11470,
+                "name": "ERC1155",
+                "nameLocation": "307:7:64",
+                "nodeType": "EnumValue",
+                "src": "307:7:64"
+              },
+              {
+                "id": 11471,
+                "name": "ERC721",
+                "nameLocation": "324:6:64",
+                "nodeType": "EnumValue",
+                "src": "324:6:64"
+              }
+            ],
+            "name": "TokenType",
+            "nameLocation": "287:9:64",
+            "nodeType": "EnumDefinition",
+            "src": "282:54:64"
+          },
+          {
+            "canonicalName": "IMarketplace.ListingType",
+            "documentation": {
+              "id": 11473,
+              "nodeType": "StructuredDocumentation",
+              "src": "342:182:64",
+              "text": "  @notice The two types of listings.\n          `Direct`: NFTs listed for sale at a fixed price.\n          `Auction`: NFTs listed for sale in an auction."
+            },
+            "id": 11476,
+            "members": [
+              {
+                "id": 11474,
+                "name": "Direct",
+                "nameLocation": "556:6:64",
+                "nodeType": "EnumValue",
+                "src": "556:6:64"
+              },
+              {
+                "id": 11475,
+                "name": "Auction",
+                "nameLocation": "572:7:64",
+                "nodeType": "EnumValue",
+                "src": "572:7:64"
+              }
+            ],
+            "name": "ListingType",
+            "nameLocation": "534:11:64",
+            "nodeType": "EnumDefinition",
+            "src": "529:56:64"
+          },
+          {
+            "canonicalName": "IMarketplace.Offer",
+            "documentation": {
+              "id": 11477,
+              "nodeType": "StructuredDocumentation",
+              "src": "591:1005:64",
+              "text": "  @notice The information related to either (1) an offer on a direct listing, or (2) a bid in an auction.\n  @dev The type of the listing at ID `lisingId` determins how the `Offer` is interpreted.\n      If the listing is of type `Direct`, the `Offer` is interpreted as an offer to a direct listing.\n      If the listing is of type `Auction`, the `Offer` is interpreted as a bid in an auction.\n  @param listingId      The uid of the listing the offer is made to.\n  @param offeror        The account making the offer.\n  @param quantityWanted The quantity of tokens from the listing wanted by the offeror.\n                        This is the entire listing quantity if the listing is an auction.\n  @param currency       The currency in which the offer is made.\n  @param pricePerToken  The price per token offered to the lister.\n  @param expirationTimestamp The timestamp after which a seller cannot accept this offer."
+            },
+            "id": 11490,
+            "members": [
+              {
+                "constant": false,
+                "id": 11479,
+                "mutability": "mutable",
+                "name": "listingId",
+                "nameLocation": "1632:9:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11490,
+                "src": "1624:17:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11478,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1624:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11481,
+                "mutability": "mutable",
+                "name": "offeror",
+                "nameLocation": "1659:7:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11490,
+                "src": "1651:15:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11480,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1651:7:64",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11483,
+                "mutability": "mutable",
+                "name": "quantityWanted",
+                "nameLocation": "1684:14:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11490,
+                "src": "1676:22:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11482,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1676:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11485,
+                "mutability": "mutable",
+                "name": "currency",
+                "nameLocation": "1716:8:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11490,
+                "src": "1708:16:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11484,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1708:7:64",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11487,
+                "mutability": "mutable",
+                "name": "pricePerToken",
+                "nameLocation": "1742:13:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11490,
+                "src": "1734:21:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11486,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1734:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11489,
+                "mutability": "mutable",
+                "name": "expirationTimestamp",
+                "nameLocation": "1773:19:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11490,
+                "src": "1765:27:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11488,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1765:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Offer",
+            "nameLocation": "1608:5:64",
+            "nodeType": "StructDefinition",
+            "scope": 11696,
+            "src": "1601:198:64",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IMarketplace.ListingParameters",
+            "documentation": {
+              "id": 11491,
+              "nodeType": "StructuredDocumentation",
+              "src": "1805:2223:64",
+              "text": "  @dev For use in `createListing` as a parameter type.\n  @param assetContract         The contract address of the NFT to list for sale.\n  @param tokenId               The tokenId on `assetContract` of the NFT to list for sale.\n  @param startTime             The unix timestamp after which the listing is active. For direct listings:\n                               'active' means NFTs can be bought from the listing. For auctions,\n                               'active' means bids can be made in the auction.\n  @param secondsUntilEndTime   No. of seconds after `startTime`, after which the listing is inactive.\n                               For direct listings: 'inactive' means NFTs cannot be bought from the listing.\n                               For auctions: 'inactive' means bids can no longer be made in the auction.\n  @param quantityToList        The quantity of NFT of ID `tokenId` on the given `assetContract` to list. For\n                               ERC 721 tokens to list for sale, the contract strictly defaults this to `1`,\n                               Regardless of the value of `quantityToList` passed.\n  @param currencyToAccept      For direct listings: the currency in which a buyer must pay the listing's fixed price\n                               to buy the NFT(s). For auctions: the currency in which the bidders must make bids.\n  @param reservePricePerToken  For direct listings: this value is ignored. For auctions: the minimum bid amount of\n                               the auction is `reservePricePerToken * quantityToList`\n  @param buyoutPricePerToken   For direct listings: interpreted as 'price per token' listed. For auctions: if\n                               `buyoutPricePerToken` is greater than 0, and a bidder's bid is at least as great as\n                               `buyoutPricePerToken * quantityToList`, the bidder wins the auction, and the auction\n                               is closed.\n  @param listingType           The type of listing to create - a direct listing or an auction.*"
+            },
+            "id": 11511,
+            "members": [
+              {
+                "constant": false,
+                "id": 11493,
+                "mutability": "mutable",
+                "name": "assetContract",
+                "nameLocation": "4076:13:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4068:21:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11492,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4068:7:64",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11495,
+                "mutability": "mutable",
+                "name": "tokenId",
+                "nameLocation": "4107:7:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4099:15:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11494,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4099:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11497,
+                "mutability": "mutable",
+                "name": "startTime",
+                "nameLocation": "4132:9:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4124:17:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11496,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4124:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11499,
+                "mutability": "mutable",
+                "name": "secondsUntilEndTime",
+                "nameLocation": "4159:19:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4151:27:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11498,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4151:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11501,
+                "mutability": "mutable",
+                "name": "quantityToList",
+                "nameLocation": "4196:14:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4188:22:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11500,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4188:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11503,
+                "mutability": "mutable",
+                "name": "currencyToAccept",
+                "nameLocation": "4228:16:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4220:24:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11502,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4220:7:64",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11505,
+                "mutability": "mutable",
+                "name": "reservePricePerToken",
+                "nameLocation": "4262:20:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4254:28:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11504,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4254:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11507,
+                "mutability": "mutable",
+                "name": "buyoutPricePerToken",
+                "nameLocation": "4300:19:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4292:27:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11506,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4292:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11510,
+                "mutability": "mutable",
+                "name": "listingType",
+                "nameLocation": "4341:11:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11511,
+                "src": "4329:23:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_ListingType_$11476",
+                  "typeString": "enum IMarketplace.ListingType"
+                },
+                "typeName": {
+                  "id": 11509,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 11508,
+                    "name": "ListingType",
+                    "nameLocations": [
+                      "4329:11:64"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 11476,
+                    "src": "4329:11:64"
+                  },
+                  "referencedDeclaration": 11476,
+                  "src": "4329:11:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_ListingType_$11476",
+                    "typeString": "enum IMarketplace.ListingType"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "ListingParameters",
+            "nameLocation": "4040:17:64",
+            "nodeType": "StructDefinition",
+            "scope": 11696,
+            "src": "4033:326:64",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "IMarketplace.Listing",
+            "documentation": {
+              "id": 11512,
+              "nodeType": "StructuredDocumentation",
+              "src": "4365:2700:64",
+              "text": "  @notice The information related to a listing; either (1) a direct listing, or (2) an auction listing.\n  @dev For direct listings:\n          (1) `reservePricePerToken` is ignored.\n          (2) `buyoutPricePerToken` is simply interpreted as 'price per token'.\n  @param listingId             The uid for the listing.\n  @param tokenOwner            The owner of the tokens listed for sale.  \n  @param assetContract         The contract address of the NFT to list for sale.\n  @param tokenId               The tokenId on `assetContract` of the NFT to list for sale.\n  @param startTime             The unix timestamp after which the listing is active. For direct listings:\n                               'active' means NFTs can be bought from the listing. For auctions,\n                               'active' means bids can be made in the auction.\n  @param endTime               The timestamp after which the listing is inactive.\n                               For direct listings: 'inactive' means NFTs cannot be bought from the listing.\n                               For auctions: 'inactive' means bids can no longer be made in the auction.\n  @param quantity              The quantity of NFT of ID `tokenId` on the given `assetContract` listed. For\n                               ERC 721 tokens to list for sale, the contract strictly defaults this to `1`,\n                               Regardless of the value of `quantityToList` passed.\n  @param currency              For direct listings: the currency in which a buyer must pay the listing's fixed price\n                               to buy the NFT(s). For auctions: the currency in which the bidders must make bids.\n  @param reservePricePerToken  For direct listings: this value is ignored. For auctions: the minimum bid amount of\n                               the auction is `reservePricePerToken * quantityToList`\n  @param buyoutPricePerToken   For direct listings: interpreted as 'price per token' listed. For auctions: if\n                               `buyoutPricePerToken` is greater than 0, and a bidder's bid is at least as great as\n                               `buyoutPricePerToken * quantityToList`, the bidder wins the auction, and the auction\n                               is closed.\n  @param tokenType             The type of the token(s) listed for for sale -- ERC721 or ERC1155 \n @param listingType            The type of listing to create - a direct listing or an auction.*"
+            },
+            "id": 11539,
+            "members": [
+              {
+                "constant": false,
+                "id": 11514,
+                "mutability": "mutable",
+                "name": "listingId",
+                "nameLocation": "7103:9:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7095:17:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11513,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7095:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11516,
+                "mutability": "mutable",
+                "name": "tokenOwner",
+                "nameLocation": "7130:10:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7122:18:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11515,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7122:7:64",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11518,
+                "mutability": "mutable",
+                "name": "assetContract",
+                "nameLocation": "7158:13:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7150:21:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11517,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7150:7:64",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11520,
+                "mutability": "mutable",
+                "name": "tokenId",
+                "nameLocation": "7189:7:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7181:15:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11519,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7181:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11522,
+                "mutability": "mutable",
+                "name": "startTime",
+                "nameLocation": "7214:9:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7206:17:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11521,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7206:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11524,
+                "mutability": "mutable",
+                "name": "endTime",
+                "nameLocation": "7241:7:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7233:15:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11523,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7233:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11526,
+                "mutability": "mutable",
+                "name": "quantity",
+                "nameLocation": "7266:8:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7258:16:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11525,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7258:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11528,
+                "mutability": "mutable",
+                "name": "currency",
+                "nameLocation": "7292:8:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7284:16:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11527,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7284:7:64",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11530,
+                "mutability": "mutable",
+                "name": "reservePricePerToken",
+                "nameLocation": "7318:20:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7310:28:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11529,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7310:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11532,
+                "mutability": "mutable",
+                "name": "buyoutPricePerToken",
+                "nameLocation": "7356:19:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7348:27:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11531,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "7348:7:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11535,
+                "mutability": "mutable",
+                "name": "tokenType",
+                "nameLocation": "7395:9:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7385:19:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_TokenType_$11472",
+                  "typeString": "enum IMarketplace.TokenType"
+                },
+                "typeName": {
+                  "id": 11534,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 11533,
+                    "name": "TokenType",
+                    "nameLocations": [
+                      "7385:9:64"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 11472,
+                    "src": "7385:9:64"
+                  },
+                  "referencedDeclaration": 11472,
+                  "src": "7385:9:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TokenType_$11472",
+                    "typeString": "enum IMarketplace.TokenType"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11538,
+                "mutability": "mutable",
+                "name": "listingType",
+                "nameLocation": "7426:11:64",
+                "nodeType": "VariableDeclaration",
+                "scope": 11539,
+                "src": "7414:23:64",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_ListingType_$11476",
+                  "typeString": "enum IMarketplace.ListingType"
+                },
+                "typeName": {
+                  "id": 11537,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 11536,
+                    "name": "ListingType",
+                    "nameLocations": [
+                      "7414:11:64"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 11476,
+                    "src": "7414:11:64"
+                  },
+                  "referencedDeclaration": 11476,
+                  "src": "7414:11:64",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_ListingType_$11476",
+                    "typeString": "enum IMarketplace.ListingType"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Listing",
+            "nameLocation": "7077:7:64",
+            "nodeType": "StructDefinition",
+            "scope": 11696,
+            "src": "7070:374:64",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11540,
+              "nodeType": "StructuredDocumentation",
+              "src": "7450:47:64",
+              "text": "@dev Emitted when a new listing is created."
+            },
+            "eventSelector": "0c5bc74ccdf848b38eb526a154b85085e1d61addf1d100cba2074e039c0b6340",
+            "id": 11551,
+            "name": "ListingAdded",
+            "nameLocation": "7508:12:64",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11550,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11542,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingId",
+                  "nameLocation": "7546:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11551,
+                  "src": "7530:25:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11541,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7530:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11544,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "assetContract",
+                  "nameLocation": "7581:13:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11551,
+                  "src": "7565:29:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11543,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7565:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11546,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "lister",
+                  "nameLocation": "7620:6:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11551,
+                  "src": "7604:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11545,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7604:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11549,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "listing",
+                  "nameLocation": "7644:7:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11551,
+                  "src": "7636:15:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Listing_$11539_memory_ptr",
+                    "typeString": "struct IMarketplace.Listing"
+                  },
+                  "typeName": {
+                    "id": 11548,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 11547,
+                      "name": "Listing",
+                      "nameLocations": [
+                        "7636:7:64"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 11539,
+                      "src": "7636:7:64"
+                    },
+                    "referencedDeclaration": 11539,
+                    "src": "7636:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Listing_$11539_storage_ptr",
+                      "typeString": "struct IMarketplace.Listing"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7520:137:64"
+            },
+            "src": "7502:156:64"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11552,
+              "nodeType": "StructuredDocumentation",
+              "src": "7664:62:64",
+              "text": "@dev Emitted when the parameters of a listing are updated."
+            },
+            "eventSelector": "bbea26162edf2bc6a0255bf144ec4dd044302a301ef7d32daa835a2ddacfdef0",
+            "id": 11558,
+            "name": "ListingUpdated",
+            "nameLocation": "7737:14:64",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11557,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11554,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingId",
+                  "nameLocation": "7768:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11558,
+                  "src": "7752:25:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11553,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7752:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11556,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingCreator",
+                  "nameLocation": "7795:14:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11558,
+                  "src": "7779:30:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11555,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7779:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7751:59:64"
+            },
+            "src": "7731:80:64"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11559,
+              "nodeType": "StructuredDocumentation",
+              "src": "7817:45:64",
+              "text": "@dev Emitted when a listing is cancelled."
+            },
+            "eventSelector": "58b0852506006c4be6c7ae72afcd195d9e64d7f5d8947905e914b778e47b7cf3",
+            "id": 11565,
+            "name": "ListingRemoved",
+            "nameLocation": "7873:14:64",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11564,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11561,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingId",
+                  "nameLocation": "7904:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11565,
+                  "src": "7888:25:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11560,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7888:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11563,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingCreator",
+                  "nameLocation": "7931:14:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11565,
+                  "src": "7915:30:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11562,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "7915:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "7887:59:64"
+            },
+            "src": "7867:80:64"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11566,
+              "nodeType": "StructuredDocumentation",
+              "src": "7953:148:64",
+              "text": " @dev Emitted when a buyer buys from a direct listing, or a lister accepts some\n      buyer's offer to their direct listing."
+            },
+            "eventSelector": "306e6cde5eb293794d557a3a6c844de939e6206b05e6910451c512852bf654a5",
+            "id": 11580,
+            "name": "NewSale",
+            "nameLocation": "8112:7:64",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11579,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11568,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingId",
+                  "nameLocation": "8145:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11580,
+                  "src": "8129:25:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11567,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8129:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11570,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "assetContract",
+                  "nameLocation": "8180:13:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11580,
+                  "src": "8164:29:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11569,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8164:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11572,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "lister",
+                  "nameLocation": "8219:6:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11580,
+                  "src": "8203:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11571,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8203:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11574,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "buyer",
+                  "nameLocation": "8243:5:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11580,
+                  "src": "8235:13:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11573,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8235:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11576,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "quantityBought",
+                  "nameLocation": "8266:14:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11580,
+                  "src": "8258:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11575,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8258:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11578,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "totalPricePaid",
+                  "nameLocation": "8298:14:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11580,
+                  "src": "8290:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11577,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8290:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "8119:199:64"
+            },
+            "src": "8106:213:64"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11581,
+              "nodeType": "StructuredDocumentation",
+              "src": "8325:111:64",
+              "text": "@dev Emitted when (1) a new offer is made to a direct listing, or (2) when a new bid is made in an auction."
+            },
+            "eventSelector": "8a412352601a288b3de40254a9de2ab14a497aa3638a7e558480680a56e2705d",
+            "id": 11596,
+            "name": "NewOffer",
+            "nameLocation": "8447:8:64",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11595,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11583,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingId",
+                  "nameLocation": "8481:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11596,
+                  "src": "8465:25:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11582,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8465:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11585,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "offeror",
+                  "nameLocation": "8516:7:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11596,
+                  "src": "8500:23:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11584,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8500:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11588,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingType",
+                  "nameLocation": "8553:11:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11596,
+                  "src": "8533:31:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_ListingType_$11476",
+                    "typeString": "enum IMarketplace.ListingType"
+                  },
+                  "typeName": {
+                    "id": 11587,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 11586,
+                      "name": "ListingType",
+                      "nameLocations": [
+                        "8533:11:64"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 11476,
+                      "src": "8533:11:64"
+                    },
+                    "referencedDeclaration": 11476,
+                    "src": "8533:11:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_ListingType_$11476",
+                      "typeString": "enum IMarketplace.ListingType"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11590,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "quantityWanted",
+                  "nameLocation": "8582:14:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11596,
+                  "src": "8574:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11589,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8574:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11592,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "totalOfferAmount",
+                  "nameLocation": "8614:16:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11596,
+                  "src": "8606:24:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11591,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8606:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11594,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "currency",
+                  "nameLocation": "8648:8:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11596,
+                  "src": "8640:16:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11593,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8640:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "8455:207:64"
+            },
+            "src": "8441:222:64"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11597,
+              "nodeType": "StructuredDocumentation",
+              "src": "8669:43:64",
+              "text": "@dev Emitted when an auction is closed."
+            },
+            "eventSelector": "572cdc5ca5e918473319d0f4737494e4709ac879a7d0bcd11ce1bef24b24e81d",
+            "id": 11609,
+            "name": "AuctionClosed",
+            "nameLocation": "8723:13:64",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11608,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11599,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "listingId",
+                  "nameLocation": "8762:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11609,
+                  "src": "8746:25:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11598,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8746:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11601,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "closer",
+                  "nameLocation": "8797:6:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11609,
+                  "src": "8781:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11600,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8781:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11603,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "cancelled",
+                  "nameLocation": "8826:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11609,
+                  "src": "8813:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 11602,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8813:4:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11605,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "auctionCreator",
+                  "nameLocation": "8853:14:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11609,
+                  "src": "8845:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11604,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8845:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11607,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "winningBidder",
+                  "nameLocation": "8885:13:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11609,
+                  "src": "8877:21:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11606,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8877:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "8736:168:64"
+            },
+            "src": "8717:188:64"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11610,
+              "nodeType": "StructuredDocumentation",
+              "src": "8911:50:64",
+              "text": "@dev Emitted when auction buffers are updated."
+            },
+            "eventSelector": "441ed6470e96704c3f8c9e70c209107078aab3f17311385e886081b91aa75088",
+            "id": 11616,
+            "name": "AuctionBuffersUpdated",
+            "nameLocation": "8972:21:64",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11615,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11612,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "timeBuffer",
+                  "nameLocation": "9002:10:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11616,
+                  "src": "8994:18:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11611,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "8994:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11614,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "bidBufferBps",
+                  "nameLocation": "9022:12:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11616,
+                  "src": "9014:20:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11613,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "9014:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "8993:42:64"
+            },
+            "src": "8966:70:64"
+          },
+          {
+            "documentation": {
+              "id": 11617,
+              "nodeType": "StructuredDocumentation",
+              "src": "9042:447:64",
+              "text": "  @notice Lets a token owner list tokens (ERC 721 or ERC 1155) for sale in a direct listing, or an auction.\n  @dev NFTs to list for sale in an auction are escrowed in Marketplace. For direct listings, the contract\n       only checks whether the listing's creator owns and has approved Marketplace to transfer the NFTs to list.\n  @param _params The parameters that govern the listing to be created."
+            },
+            "functionSelector": "296f4e16",
+            "id": 11623,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createListing",
+            "nameLocation": "9503:13:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11621,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11620,
+                  "mutability": "mutable",
+                  "name": "_params",
+                  "nameLocation": "9542:7:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11623,
+                  "src": "9517:32:64",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ListingParameters_$11511_memory_ptr",
+                    "typeString": "struct IMarketplace.ListingParameters"
+                  },
+                  "typeName": {
+                    "id": 11619,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 11618,
+                      "name": "ListingParameters",
+                      "nameLocations": [
+                        "9517:17:64"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 11511,
+                      "src": "9517:17:64"
+                    },
+                    "referencedDeclaration": 11511,
+                    "src": "9517:17:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ListingParameters_$11511_storage_ptr",
+                      "typeString": "struct IMarketplace.ListingParameters"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "9516:34:64"
+            },
+            "returnParameters": {
+              "id": 11622,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "9559:0:64"
+            },
+            "scope": 11696,
+            "src": "9494:66:64",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11624,
+              "nodeType": "StructuredDocumentation",
+              "src": "9566:2314:64",
+              "text": "  @notice Lets a listing's creator edit the listing's parameters. A direct listing can be edited whenever.\n          An auction listing cannot be edited after the auction has started.\n  @param _listingId            The uid of the lisitng to edit.\n  @param _quantityToList       The amount of NFTs to list for sale in the listing. For direct lisitngs, the contract\n                               only checks whether the listing creator owns and has approved Marketplace to transfer\n                               `_quantityToList` amount of NFTs to list for sale. For auction listings, the contract\n                               ensures that exactly `_quantityToList` amount of NFTs to list are escrowed.\n  @param _reservePricePerToken For direct listings: this value is ignored. For auctions: the minimum bid amount of\n                               the auction is `reservePricePerToken * quantityToList`\n  @param _buyoutPricePerToken  For direct listings: interpreted as 'price per token' listed. For auctions: if\n                               `buyoutPricePerToken` is greater than 0, and a bidder's bid is at least as great as\n                               `buyoutPricePerToken * quantityToList`, the bidder wins the auction, and the auction\n                               is closed.\n  @param _currencyToAccept     For direct listings: the currency in which a buyer must pay the listing's fixed price\n                               to buy the NFT(s). For auctions: the currency in which the bidders must make bids.\n  @param _startTime            The unix timestamp after which listing is active. For direct listings:\n                               'active' means NFTs can be bought from the listing. For auctions,\n                               'active' means bids can be made in the auction.\n  @param _secondsUntilEndTime  No. of seconds after the provided `_startTime`, after which the listing is inactive.\n                               For direct listings: 'inactive' means NFTs cannot be bought from the listing.\n                               For auctions: 'inactive' means bids can no longer be made in the auction."
+            },
+            "functionSelector": "c4b5b15f",
+            "id": 11641,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateListing",
+            "nameLocation": "11894:13:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11639,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11626,
+                  "mutability": "mutable",
+                  "name": "_listingId",
+                  "nameLocation": "11925:10:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11641,
+                  "src": "11917:18:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11625,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "11917:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11628,
+                  "mutability": "mutable",
+                  "name": "_quantityToList",
+                  "nameLocation": "11953:15:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11641,
+                  "src": "11945:23:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11627,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "11945:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11630,
+                  "mutability": "mutable",
+                  "name": "_reservePricePerToken",
+                  "nameLocation": "11986:21:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11641,
+                  "src": "11978:29:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11629,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "11978:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11632,
+                  "mutability": "mutable",
+                  "name": "_buyoutPricePerToken",
+                  "nameLocation": "12025:20:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11641,
+                  "src": "12017:28:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11631,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "12017:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11634,
+                  "mutability": "mutable",
+                  "name": "_currencyToAccept",
+                  "nameLocation": "12063:17:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11641,
+                  "src": "12055:25:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11633,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "12055:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11636,
+                  "mutability": "mutable",
+                  "name": "_startTime",
+                  "nameLocation": "12098:10:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11641,
+                  "src": "12090:18:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11635,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "12090:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11638,
+                  "mutability": "mutable",
+                  "name": "_secondsUntilEndTime",
+                  "nameLocation": "12126:20:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11641,
+                  "src": "12118:28:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11637,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "12118:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "11907:245:64"
+            },
+            "returnParameters": {
+              "id": 11640,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "12161:0:64"
+            },
+            "scope": 11696,
+            "src": "11885:277:64",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11642,
+              "nodeType": "StructuredDocumentation",
+              "src": "12168:152:64",
+              "text": "  @notice Lets a direct listing creator cancel their listing.\n  @param _listingId The unique Id of the lisitng to cancel."
+            },
+            "functionSelector": "7506c84a",
+            "id": 11647,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cancelDirectListing",
+            "nameLocation": "12334:19:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11645,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11644,
+                  "mutability": "mutable",
+                  "name": "_listingId",
+                  "nameLocation": "12362:10:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11647,
+                  "src": "12354:18:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11643,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "12354:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "12353:20:64"
+            },
+            "returnParameters": {
+              "id": 11646,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "12382:0:64"
+            },
+            "scope": 11696,
+            "src": "12325:58:64",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11648,
+              "nodeType": "StructuredDocumentation",
+              "src": "12389:873:64",
+              "text": "  @notice Lets someone buy a given quantity of tokens from a direct listing by paying the fixed price.\n  @param _listingId The uid of the direct lisitng to buy from.\n  @param _buyFor The receiver of the NFT being bought.\n  @param _quantity The amount of NFTs to buy from the direct listing.\n  @param _currency The currency to pay the price in.\n  @param _totalPrice The total price to pay for the tokens being bought.\n  @dev A sale will fail to execute if either:\n          (1) buyer does not own or has not approved Marketplace to transfer the appropriate\n              amount of currency (or hasn't sent the appropriate amount of native tokens)\n          (2) the lister does not own or has removed Markeplace's\n              approval to transfer the tokens listed for sale."
+            },
+            "functionSelector": "7687ab02",
+            "id": 11661,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "buy",
+            "nameLocation": "13276:3:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11659,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11650,
+                  "mutability": "mutable",
+                  "name": "_listingId",
+                  "nameLocation": "13297:10:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11661,
+                  "src": "13289:18:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11649,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "13289:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11652,
+                  "mutability": "mutable",
+                  "name": "_buyFor",
+                  "nameLocation": "13325:7:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11661,
+                  "src": "13317:15:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11651,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "13317:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11654,
+                  "mutability": "mutable",
+                  "name": "_quantity",
+                  "nameLocation": "13350:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11661,
+                  "src": "13342:17:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11653,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "13342:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11656,
+                  "mutability": "mutable",
+                  "name": "_currency",
+                  "nameLocation": "13377:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11661,
+                  "src": "13369:17:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11655,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "13369:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11658,
+                  "mutability": "mutable",
+                  "name": "_totalPrice",
+                  "nameLocation": "13404:11:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11661,
+                  "src": "13396:19:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11657,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "13396:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "13279:142:64"
+            },
+            "returnParameters": {
+              "id": 11660,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "13438:0:64"
+            },
+            "scope": 11696,
+            "src": "13267:172:64",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11662,
+              "nodeType": "StructuredDocumentation",
+              "src": "13445:1580:64",
+              "text": "  @notice Lets someone make an offer to a direct listing, or bid in an auction.\n  @dev Each (address, listing ID) pair maps to a single unique offer. So e.g. if a buyer makes\n       makes two offers to the same direct listing, the last offer is counted as the buyer's\n       offer to that listing.\n  @param _listingId        The unique ID of the lisitng to make an offer/bid to.\n  @param _quantityWanted   For auction listings: the 'quantity wanted' is the total amount of NFTs\n                           being auctioned, regardless of the value of `_quantityWanted` passed.\n                           For direct listings: `_quantityWanted` is the quantity of NFTs from the\n                           listing, for which the offer is being made.\n  @param _currency         For auction listings: the 'currency of the bid' is the currency accepted\n                           by the auction, regardless of the value of `_currency` passed. For direct\n                           listings: this is the currency in which the offer is made.\n  @param _pricePerToken    For direct listings: offered price per token. For auction listings: the bid\n                           amount per token. The total offer/bid amount is `_quantityWanted * _pricePerToken`.\n  @param _expirationTimestamp For aution listings: inapplicable. For direct listings: The timestamp after which\n                              the seller can no longer accept the offer."
+            },
+            "functionSelector": "5fef45e7",
+            "id": 11675,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "offer",
+            "nameLocation": "15039:5:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11673,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11664,
+                  "mutability": "mutable",
+                  "name": "_listingId",
+                  "nameLocation": "15062:10:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11675,
+                  "src": "15054:18:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11663,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15054:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11666,
+                  "mutability": "mutable",
+                  "name": "_quantityWanted",
+                  "nameLocation": "15090:15:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11675,
+                  "src": "15082:23:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11665,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15082:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11668,
+                  "mutability": "mutable",
+                  "name": "_currency",
+                  "nameLocation": "15123:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11675,
+                  "src": "15115:17:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11667,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15115:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11670,
+                  "mutability": "mutable",
+                  "name": "_pricePerToken",
+                  "nameLocation": "15150:14:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11675,
+                  "src": "15142:22:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11669,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15142:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11672,
+                  "mutability": "mutable",
+                  "name": "_expirationTimestamp",
+                  "nameLocation": "15182:20:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11675,
+                  "src": "15174:28:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11671,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15174:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "15044:164:64"
+            },
+            "returnParameters": {
+              "id": 11674,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "15225:0:64"
+            },
+            "scope": 11696,
+            "src": "15030:196:64",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11676,
+              "nodeType": "StructuredDocumentation",
+              "src": "15232:409:64",
+              "text": " @notice Lets a listing's creator accept an offer to their direct listing.\n @param _listingId The unique ID of the listing for which to accept the offer.\n @param _offeror The address of the buyer whose offer is to be accepted.\n @param _currency The currency of the offer that is to be accepted.\n @param _totalPrice The total price of the offer that is to be accepted."
+            },
+            "functionSelector": "b13c0e63",
+            "id": 11687,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "acceptOffer",
+            "nameLocation": "15655:11:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11685,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11678,
+                  "mutability": "mutable",
+                  "name": "_listingId",
+                  "nameLocation": "15684:10:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11687,
+                  "src": "15676:18:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11677,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15676:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11680,
+                  "mutability": "mutable",
+                  "name": "_offeror",
+                  "nameLocation": "15712:8:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11687,
+                  "src": "15704:16:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11679,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15704:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11682,
+                  "mutability": "mutable",
+                  "name": "_currency",
+                  "nameLocation": "15738:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11687,
+                  "src": "15730:17:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11681,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15730:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11684,
+                  "mutability": "mutable",
+                  "name": "_totalPrice",
+                  "nameLocation": "15765:11:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11687,
+                  "src": "15757:19:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11683,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "15757:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "15666:116:64"
+            },
+            "returnParameters": {
+              "id": 11686,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "15791:0:64"
+            },
+            "scope": 11696,
+            "src": "15646:146:64",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11688,
+              "nodeType": "StructuredDocumentation",
+              "src": "15798:475:64",
+              "text": "  @notice Lets any account close an auction on behalf of either the (1) auction's creator, or (2) winning bidder.\n              For (1): The auction creator is sent the the winning bid amount.\n              For (2): The winning bidder is sent the auctioned NFTs.\n  @param _listingId The uid of the listing (the auction to close).\n  @param _closeFor For whom the auction is being closed - the auction creator or winning bidder."
+            },
+            "functionSelector": "6bab66ae",
+            "id": 11695,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "closeAuction",
+            "nameLocation": "16287:12:64",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11693,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11690,
+                  "mutability": "mutable",
+                  "name": "_listingId",
+                  "nameLocation": "16308:10:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11695,
+                  "src": "16300:18:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11689,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "16300:7:64",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11692,
+                  "mutability": "mutable",
+                  "name": "_closeFor",
+                  "nameLocation": "16328:9:64",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11695,
+                  "src": "16320:17:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11691,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "16320:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "16299:39:64"
+            },
+            "returnParameters": {
+              "id": 11694,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "16347:0:64"
+            },
+            "scope": 11696,
+            "src": "16278:70:64",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11697,
+        "src": "154:16196:64",
+        "usedErrors": [],
+        "usedEvents": [
+          11150,
+          11157,
+          11163,
+          11551,
+          11558,
+          11565,
+          11580,
+          11596,
+          11609,
+          11616
+        ]
+      }
+    ],
+    "src": "39:16312:64"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.15",
+  "updatedAt": "2023-08-15T23:19:36.625Z",
+  "devdoc": {
+    "events": {
+      "AuctionBuffersUpdated(uint256,uint256)": {
+        "details": "Emitted when auction buffers are updated."
+      },
+      "AuctionClosed(uint256,address,bool,address,address)": {
+        "details": "Emitted when an auction is closed."
+      },
+      "FlatPlatformFeeUpdated(address,uint256)": {
+        "details": "Emitted when the flat platform fee is updated."
+      },
+      "ListingAdded(uint256,address,address,(uint256,address,address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint8,uint8))": {
+        "details": "Emitted when a new listing is created."
+      },
+      "ListingRemoved(uint256,address)": {
+        "details": "Emitted when a listing is cancelled."
+      },
+      "ListingUpdated(uint256,address)": {
+        "details": "Emitted when the parameters of a listing are updated."
+      },
+      "NewOffer(uint256,address,uint8,uint256,uint256,address)": {
+        "details": "Emitted when (1) a new offer is made to a direct listing, or (2) when a new bid is made in an auction."
+      },
+      "NewSale(uint256,address,address,address,uint256,uint256)": {
+        "details": "Emitted when a buyer buys from a direct listing, or a lister accepts some      buyer's offer to their direct listing."
+      },
+      "PlatformFeeInfoUpdated(address,uint256)": {
+        "details": "Emitted when fee on primary sales is updated."
+      },
+      "PlatformFeeTypeUpdated(uint8)": {
+        "details": "Emitted when the platform fee type is updated."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "acceptOffer(uint256,address,address,uint256)": {
+        "params": {
+          "_currency": "The currency of the offer that is to be accepted.",
+          "_listingId": "The unique ID of the listing for which to accept the offer.",
+          "_offeror": "The address of the buyer whose offer is to be accepted.",
+          "_totalPrice": "The total price of the offer that is to be accepted."
+        }
+      },
+      "buy(uint256,address,uint256,address,uint256)": {
+        "details": "A sale will fail to execute if either:          (1) buyer does not own or has not approved Marketplace to transfer the appropriate              amount of currency (or hasn't sent the appropriate amount of native tokens)          (2) the lister does not own or has removed Markeplace's              approval to transfer the tokens listed for sale.",
+        "params": {
+          "_buyFor": "The receiver of the NFT being bought.",
+          "_currency": "The currency to pay the price in.",
+          "_listingId": "The uid of the direct lisitng to buy from.",
+          "_quantity": "The amount of NFTs to buy from the direct listing.",
+          "_totalPrice": "The total price to pay for the tokens being bought."
+        }
+      },
+      "cancelDirectListing(uint256)": {
+        "params": {
+          "_listingId": "The unique Id of the lisitng to cancel."
+        }
+      },
+      "closeAuction(uint256,address)": {
+        "params": {
+          "_closeFor": "For whom the auction is being closed - the auction creator or winning bidder.",
+          "_listingId": "The uid of the listing (the auction to close)."
+        }
+      },
+      "contractType()": {
+        "details": "Returns the module type of the contract."
+      },
+      "contractURI()": {
+        "details": "Returns the metadata URI of the contract."
+      },
+      "contractVersion()": {
+        "details": "Returns the version of the contract."
+      },
+      "createListing((address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint8))": {
+        "details": "NFTs to list for sale in an auction are escrowed in Marketplace. For direct listings, the contract       only checks whether the listing's creator owns and has approved Marketplace to transfer the NFTs to list.",
+        "params": {
+          "_params": "The parameters that govern the listing to be created."
+        }
+      },
+      "getPlatformFeeInfo()": {
+        "details": "Returns the platform fee bps and recipient."
+      },
+      "offer(uint256,uint256,address,uint256,uint256)": {
+        "details": "Each (address, listing ID) pair maps to a single unique offer. So e.g. if a buyer makes       makes two offers to the same direct listing, the last offer is counted as the buyer's       offer to that listing.",
+        "params": {
+          "_currency": "For auction listings: the 'currency of the bid' is the currency accepted                           by the auction, regardless of the value of `_currency` passed. For direct                           listings: this is the currency in which the offer is made.",
+          "_expirationTimestamp": "For aution listings: inapplicable. For direct listings: The timestamp after which                              the seller can no longer accept the offer.",
+          "_listingId": "The unique ID of the lisitng to make an offer/bid to.",
+          "_pricePerToken": "For direct listings: offered price per token. For auction listings: the bid                           amount per token. The total offer/bid amount is `_quantityWanted * _pricePerToken`.",
+          "_quantityWanted": "For auction listings: the 'quantity wanted' is the total amount of NFTs                           being auctioned, regardless of the value of `_quantityWanted` passed.                           For direct listings: `_quantityWanted` is the quantity of NFTs from the                           listing, for which the offer is being made."
+        }
+      },
+      "setContractURI(string)": {
+        "details": "Sets contract URI for the storefront-level metadata of the contract.       Only module admin can call this function."
+      },
+      "setPlatformFeeInfo(address,uint256)": {
+        "details": "Lets a module admin update the fees on primary sales."
+      },
+      "updateListing(uint256,uint256,uint256,uint256,address,uint256,uint256)": {
+        "params": {
+          "_buyoutPricePerToken": "For direct listings: interpreted as 'price per token' listed. For auctions: if                               `buyoutPricePerToken` is greater than 0, and a bidder's bid is at least as great as                               `buyoutPricePerToken * quantityToList`, the bidder wins the auction, and the auction                               is closed.",
+          "_currencyToAccept": "For direct listings: the currency in which a buyer must pay the listing's fixed price                               to buy the NFT(s). For auctions: the currency in which the bidders must make bids.",
+          "_listingId": "The uid of the lisitng to edit.",
+          "_quantityToList": "The amount of NFTs to list for sale in the listing. For direct lisitngs, the contract                               only checks whether the listing creator owns and has approved Marketplace to transfer                               `_quantityToList` amount of NFTs to list for sale. For auction listings, the contract                               ensures that exactly `_quantityToList` amount of NFTs to list are escrowed.",
+          "_reservePricePerToken": "For direct listings: this value is ignored. For auctions: the minimum bid amount of                               the auction is `reservePricePerToken * quantityToList`",
+          "_secondsUntilEndTime": "No. of seconds after the provided `_startTime`, after which the listing is inactive.                               For direct listings: 'inactive' means NFTs cannot be bought from the listing.                               For auctions: 'inactive' means bids can no longer be made in the auction.",
+          "_startTime": "The unix timestamp after which listing is active. For direct listings:                               'active' means NFTs can be bought from the listing. For auctions,                               'active' means bids can be made in the auction."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "acceptOffer(uint256,address,address,uint256)": {
+        "notice": "Lets a listing's creator accept an offer to their direct listing."
+      },
+      "buy(uint256,address,uint256,address,uint256)": {
+        "notice": "Lets someone buy a given quantity of tokens from a direct listing by paying the fixed price."
+      },
+      "cancelDirectListing(uint256)": {
+        "notice": "Lets a direct listing creator cancel their listing."
+      },
+      "closeAuction(uint256,address)": {
+        "notice": "Lets any account close an auction on behalf of either the (1) auction's creator, or (2) winning bidder.              For (1): The auction creator is sent the the winning bid amount.              For (2): The winning bidder is sent the auctioned NFTs."
+      },
+      "createListing((address,uint256,uint256,uint256,uint256,address,uint256,uint256,uint8))": {
+        "notice": "Lets a token owner list tokens (ERC 721 or ERC 1155) for sale in a direct listing, or an auction."
+      },
+      "offer(uint256,uint256,address,uint256,uint256)": {
+        "notice": "Lets someone make an offer to a direct listing, or bid in an auction."
+      },
+      "updateListing(uint256,uint256,uint256,uint256,address,uint256,uint256)": {
+        "notice": "Lets a listing's creator edit the listing's parameters. A direct listing can be edited whenever.          An auction listing cannot be edited after the auction has started."
+      }
+    },
+    "version": 1
+  }
+}

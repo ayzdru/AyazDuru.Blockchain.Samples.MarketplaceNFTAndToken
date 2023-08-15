@@ -1,0 +1,1271 @@
+{
+  "contractName": "IPack",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "packId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalPacksCreated",
+          "type": "uint256"
+        }
+      ],
+      "name": "PackCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "packId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "opener",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "numOfPacksOpened",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "assetContract",
+              "type": "address"
+            },
+            {
+              "internalType": "enum ITokenBundle.TokenType",
+              "name": "tokenType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalAmount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct ITokenBundle.Token[]",
+          "name": "rewardUnitsDistributed",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "PackOpened",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "packId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalPacksCreated",
+          "type": "uint256"
+        }
+      ],
+      "name": "PackUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "assetContract",
+              "type": "address"
+            },
+            {
+              "internalType": "enum ITokenBundle.TokenType",
+              "name": "tokenType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalAmount",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ITokenBundle.Token[]",
+          "name": "contents",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "numOfRewardUnits",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "string",
+          "name": "packUri",
+          "type": "string"
+        },
+        {
+          "internalType": "uint128",
+          "name": "openStartTimestamp",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "amountDistributedPerOpen",
+          "type": "uint128"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        }
+      ],
+      "name": "createPack",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "packId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "packTotalSupply",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "packId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountToOpen",
+          "type": "uint256"
+        }
+      ],
+      "name": "openPack",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "assetContract",
+              "type": "address"
+            },
+            {
+              "internalType": "enum ITokenBundle.TokenType",
+              "name": "tokenType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalAmount",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ITokenBundle.Token[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"packId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"totalPacksCreated\",\"type\":\"uint256\"}],\"name\":\"PackCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"packId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"opener\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"numOfPacksOpened\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"assetContract\",\"type\":\"address\"},{\"internalType\":\"enum ITokenBundle.TokenType\",\"name\":\"tokenType\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalAmount\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct ITokenBundle.Token[]\",\"name\":\"rewardUnitsDistributed\",\"type\":\"tuple[]\"}],\"name\":\"PackOpened\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"packId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"totalPacksCreated\",\"type\":\"uint256\"}],\"name\":\"PackUpdated\",\"type\":\"event\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"assetContract\",\"type\":\"address\"},{\"internalType\":\"enum ITokenBundle.TokenType\",\"name\":\"tokenType\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalAmount\",\"type\":\"uint256\"}],\"internalType\":\"struct ITokenBundle.Token[]\",\"name\":\"contents\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256[]\",\"name\":\"numOfRewardUnits\",\"type\":\"uint256[]\"},{\"internalType\":\"string\",\"name\":\"packUri\",\"type\":\"string\"},{\"internalType\":\"uint128\",\"name\":\"openStartTimestamp\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"amountDistributedPerOpen\",\"type\":\"uint128\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"}],\"name\":\"createPack\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"packId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"packTotalSupply\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"packId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amountToOpen\",\"type\":\"uint256\"}],\"name\":\"openPack\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"assetContract\",\"type\":\"address\"},{\"internalType\":\"enum ITokenBundle.TokenType\",\"name\":\"tokenType\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalAmount\",\"type\":\"uint256\"}],\"internalType\":\"struct ITokenBundle.Token[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"createPack((address,uint8,uint256,uint256)[],uint256[],string,uint128,uint128,address)\":{\"params\":{\"amountDistributedPerOpen\":\"The number of reward units distributed per open.\",\"contents\":\"The reward units to pack in the packs.\",\"numOfRewardUnits\":\"The number of reward units to create, for each asset specified in `contents`.\",\"openStartTimestamp\":\"The timestamp after which packs can be opened.\",\"packUri\":\"The (metadata) URI assigned to the packs created.\",\"recipient\":\"The recipient of the packs created.\"},\"returns\":{\"packId\":\"The unique identifer of the created set of packs.\",\"packTotalSupply\":\"The total number of packs created.\"}},\"openPack(uint256,uint256)\":{\"params\":{\"amountToOpen\":\"The number of packs to open at once.\",\"packId\":\"The identifier of the pack to open.\"}}},\"version\":1},\"userdoc\":{\"events\":{\"PackCreated(uint256,address,uint256)\":{\"notice\":\"Emitted when a set of packs is created.\"},\"PackOpened(uint256,address,uint256,(address,uint8,uint256,uint256)[])\":{\"notice\":\"Emitted when a pack is opened.\"},\"PackUpdated(uint256,address,uint256)\":{\"notice\":\"Emitted when more packs are minted for a packId.\"}},\"kind\":\"user\",\"methods\":{\"createPack((address,uint8,uint256,uint256)[],uint256[],string,uint128,uint128,address)\":{\"notice\":\"Creates a pack with the stated contents.\"},\"openPack(uint256,uint256)\":{\"notice\":\"Lets a pack owner open a pack and receive the pack's reward unit.\"}},\"notice\":\"The thirdweb `Pack` contract is a lootbox mechanism. An account can bundle up arbitrary ERC20, ERC721 and ERC1155 tokens into  a set of packs. A pack can then be opened in return for a selection of the tokens in the pack. The selection of tokens distributed  on opening a pack depends on the relative supply of all tokens in the packs.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"@thirdweb-dev/contracts/interfaces/IPack.sol\":\"IPack\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"@thirdweb-dev/contracts/extension/interface/ITokenBundle.sol\":{\"keccak256\":\"0x4b575f4d82b4cb77b48262e2bffcc15497e52d21c38ba5614668a9cd29540949\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://496f280ff443f0466263cf06351b18a1796bfc5fe5948a7ae60316435ef564a0\",\"dweb:/ipfs/QmbAvbEe7X1oNbBDSFqPDWKmSkZC7dv4kN3aHJde2b4dV3\"]},\"@thirdweb-dev/contracts/interfaces/IPack.sol\":{\"keccak256\":\"0xff19a3c701b3945f71deffa72d1201e30a08ecaac55c55c784e91026204ec82f\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://fabfc1d95f0687cb1a3ba3d574f90247d74102aee5d1e5b7caf8e4649a572201\",\"dweb:/ipfs/QmdpaSaPbvpTkSp7PuqPFz5MwFqxPZWZTorHTttq1hPyfg\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.11;\n\nimport \"../extension/interface/ITokenBundle.sol\";\n\n/**\n *  The thirdweb `Pack` contract is a lootbox mechanism. An account can bundle up arbitrary ERC20, ERC721 and ERC1155 tokens into\n *  a set of packs. A pack can then be opened in return for a selection of the tokens in the pack. The selection of tokens distributed\n *  on opening a pack depends on the relative supply of all tokens in the packs.\n */\n\ninterface IPack is ITokenBundle {\n    /**\n     *  @notice All info relevant to packs.\n     *\n     *  @param perUnitAmounts           Mapping from a UID -> to the per-unit amount of that asset i.e. `Token` at that index.\n     *  @param openStartTimestamp       The timestamp after which packs can be opened.\n     *  @param amountDistributedPerOpen The number of reward units distributed per open.\n     */\n    struct PackInfo {\n        uint256[] perUnitAmounts;\n        uint128 openStartTimestamp;\n        uint128 amountDistributedPerOpen;\n    }\n\n    /// @notice Emitted when a set of packs is created.\n    event PackCreated(uint256 indexed packId, address recipient, uint256 totalPacksCreated);\n\n    /// @notice Emitted when more packs are minted for a packId.\n    event PackUpdated(uint256 indexed packId, address recipient, uint256 totalPacksCreated);\n\n    /// @notice Emitted when a pack is opened.\n    event PackOpened(\n        uint256 indexed packId,\n        address indexed opener,\n        uint256 numOfPacksOpened,\n        Token[] rewardUnitsDistributed\n    );\n\n    /**\n     *  @notice Creates a pack with the stated contents.\n     *\n     *  @param contents                 The reward units to pack in the packs.\n     *  @param numOfRewardUnits         The number of reward units to create, for each asset specified in `contents`.\n     *  @param packUri                  The (metadata) URI assigned to the packs created.\n     *  @param openStartTimestamp       The timestamp after which packs can be opened.\n     *  @param amountDistributedPerOpen The number of reward units distributed per open.\n     *  @param recipient                The recipient of the packs created.\n     *\n     *  @return packId The unique identifer of the created set of packs.\n     *  @return packTotalSupply The total number of packs created.\n     */\n    function createPack(\n        Token[] calldata contents,\n        uint256[] calldata numOfRewardUnits,\n        string calldata packUri,\n        uint128 openStartTimestamp,\n        uint128 amountDistributedPerOpen,\n        address recipient\n    ) external payable returns (uint256 packId, uint256 packTotalSupply);\n\n    /**\n     *  @notice Lets a pack owner open a pack and receive the pack's reward unit.\n     *\n     *  @param packId       The identifier of the pack to open.\n     *  @param amountToOpen The number of packs to open at once.\n     */\n    function openPack(uint256 packId, uint256 amountToOpen) external returns (Token[] memory);\n}\n",
+  "sourcePath": "@thirdweb-dev\\contracts\\interfaces\\IPack.sol",
+  "ast": {
+    "absolutePath": "@thirdweb-dev/contracts/interfaces/IPack.sol",
+    "exportedSymbols": {
+      "IPack": [
+        11413
+      ],
+      "ITokenBundle": [
+        11280
+      ]
+    },
+    "id": 11414,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11333,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:61"
+      },
+      {
+        "absolutePath": "@thirdweb-dev/contracts/extension/interface/ITokenBundle.sol",
+        "file": "../extension/interface/ITokenBundle.sol",
+        "id": 11334,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 11414,
+        "sourceUnit": 11281,
+        "src": "65:49:61",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 11336,
+              "name": "ITokenBundle",
+              "nameLocations": [
+                "490:12:61"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 11280,
+              "src": "490:12:61"
+            },
+            "id": 11337,
+            "nodeType": "InheritanceSpecifier",
+            "src": "490:12:61"
+          }
+        ],
+        "canonicalName": "IPack",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 11335,
+          "nodeType": "StructuredDocumentation",
+          "src": "116:353:61",
+          "text": "  The thirdweb `Pack` contract is a lootbox mechanism. An account can bundle up arbitrary ERC20, ERC721 and ERC1155 tokens into\n  a set of packs. A pack can then be opened in return for a selection of the tokens in the pack. The selection of tokens distributed\n  on opening a pack depends on the relative supply of all tokens in the packs."
+        },
+        "fullyImplemented": false,
+        "id": 11413,
+        "linearizedBaseContracts": [
+          11413,
+          11280
+        ],
+        "name": "IPack",
+        "nameLocation": "481:5:61",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IPack.PackInfo",
+            "documentation": {
+              "id": 11338,
+              "nodeType": "StructuredDocumentation",
+              "src": "509:365:61",
+              "text": "  @notice All info relevant to packs.\n  @param perUnitAmounts           Mapping from a UID -> to the per-unit amount of that asset i.e. `Token` at that index.\n  @param openStartTimestamp       The timestamp after which packs can be opened.\n  @param amountDistributedPerOpen The number of reward units distributed per open."
+            },
+            "id": 11346,
+            "members": [
+              {
+                "constant": false,
+                "id": 11341,
+                "mutability": "mutable",
+                "name": "perUnitAmounts",
+                "nameLocation": "915:14:61",
+                "nodeType": "VariableDeclaration",
+                "scope": 11346,
+                "src": "905:24:61",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 11339,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "905:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 11340,
+                  "nodeType": "ArrayTypeName",
+                  "src": "905:9:61",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11343,
+                "mutability": "mutable",
+                "name": "openStartTimestamp",
+                "nameLocation": "947:18:61",
+                "nodeType": "VariableDeclaration",
+                "scope": 11346,
+                "src": "939:26:61",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint128",
+                  "typeString": "uint128"
+                },
+                "typeName": {
+                  "id": 11342,
+                  "name": "uint128",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "939:7:61",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11345,
+                "mutability": "mutable",
+                "name": "amountDistributedPerOpen",
+                "nameLocation": "983:24:61",
+                "nodeType": "VariableDeclaration",
+                "scope": 11346,
+                "src": "975:32:61",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint128",
+                  "typeString": "uint128"
+                },
+                "typeName": {
+                  "id": 11344,
+                  "name": "uint128",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "975:7:61",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "PackInfo",
+            "nameLocation": "886:8:61",
+            "nodeType": "StructDefinition",
+            "scope": 11413,
+            "src": "879:135:61",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11347,
+              "nodeType": "StructuredDocumentation",
+              "src": "1020:51:61",
+              "text": "@notice Emitted when a set of packs is created."
+            },
+            "eventSelector": "529034575398e71312a0b7b951d8ca42dce1529d774f4a255a587f64f649fff8",
+            "id": 11355,
+            "name": "PackCreated",
+            "nameLocation": "1082:11:61",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11354,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11349,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "packId",
+                  "nameLocation": "1110:6:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11355,
+                  "src": "1094:22:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11348,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1094:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11351,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "1126:9:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11355,
+                  "src": "1118:17:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11350,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1118:7:61",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11353,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "totalPacksCreated",
+                  "nameLocation": "1145:17:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11355,
+                  "src": "1137:25:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11352,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1137:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1093:70:61"
+            },
+            "src": "1076:88:61"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11356,
+              "nodeType": "StructuredDocumentation",
+              "src": "1170:60:61",
+              "text": "@notice Emitted when more packs are minted for a packId."
+            },
+            "eventSelector": "df54045461e7fa6cda88afd9b979d29bb9ef67b8271562cec9a7a95ddc3afe72",
+            "id": 11364,
+            "name": "PackUpdated",
+            "nameLocation": "1241:11:61",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11363,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11358,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "packId",
+                  "nameLocation": "1269:6:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11364,
+                  "src": "1253:22:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11357,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1253:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11360,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "1285:9:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11364,
+                  "src": "1277:17:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11359,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1277:7:61",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11362,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "totalPacksCreated",
+                  "nameLocation": "1304:17:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11364,
+                  "src": "1296:25:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11361,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1296:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1252:70:61"
+            },
+            "src": "1235:88:61"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11365,
+              "nodeType": "StructuredDocumentation",
+              "src": "1329:42:61",
+              "text": "@notice Emitted when a pack is opened."
+            },
+            "eventSelector": "58bbfaa763248693d05ac650926341943af86affd998d80e41dbcc9adfdae607",
+            "id": 11377,
+            "name": "PackOpened",
+            "nameLocation": "1382:10:61",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11376,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11367,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "packId",
+                  "nameLocation": "1418:6:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11377,
+                  "src": "1402:22:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11366,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1402:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11369,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "opener",
+                  "nameLocation": "1450:6:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11377,
+                  "src": "1434:22:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11368,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1434:7:61",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11371,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "numOfPacksOpened",
+                  "nameLocation": "1474:16:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11377,
+                  "src": "1466:24:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11370,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1466:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11375,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "rewardUnitsDistributed",
+                  "nameLocation": "1508:22:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11377,
+                  "src": "1500:30:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Token_$11268_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "struct ITokenBundle.Token[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 11373,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 11372,
+                        "name": "Token",
+                        "nameLocations": [
+                          "1500:5:61"
+                        ],
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 11268,
+                        "src": "1500:5:61"
+                      },
+                      "referencedDeclaration": 11268,
+                      "src": "1500:5:61",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Token_$11268_storage_ptr",
+                        "typeString": "struct ITokenBundle.Token"
+                      }
+                    },
+                    "id": 11374,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1500:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Token_$11268_storage_$dyn_storage_ptr",
+                      "typeString": "struct ITokenBundle.Token[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1392:144:61"
+            },
+            "src": "1376:161:61"
+          },
+          {
+            "documentation": {
+              "id": 11378,
+              "nodeType": "StructuredDocumentation",
+              "src": "1543:761:61",
+              "text": "  @notice Creates a pack with the stated contents.\n  @param contents                 The reward units to pack in the packs.\n  @param numOfRewardUnits         The number of reward units to create, for each asset specified in `contents`.\n  @param packUri                  The (metadata) URI assigned to the packs created.\n  @param openStartTimestamp       The timestamp after which packs can be opened.\n  @param amountDistributedPerOpen The number of reward units distributed per open.\n  @param recipient                The recipient of the packs created.\n  @return packId The unique identifer of the created set of packs.\n  @return packTotalSupply The total number of packs created."
+            },
+            "functionSelector": "092e6075",
+            "id": 11400,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createPack",
+            "nameLocation": "2318:10:61",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11394,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11382,
+                  "mutability": "mutable",
+                  "name": "contents",
+                  "nameLocation": "2355:8:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11400,
+                  "src": "2338:25:61",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Token_$11268_calldata_ptr_$dyn_calldata_ptr",
+                    "typeString": "struct ITokenBundle.Token[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 11380,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 11379,
+                        "name": "Token",
+                        "nameLocations": [
+                          "2338:5:61"
+                        ],
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 11268,
+                        "src": "2338:5:61"
+                      },
+                      "referencedDeclaration": 11268,
+                      "src": "2338:5:61",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Token_$11268_storage_ptr",
+                        "typeString": "struct ITokenBundle.Token"
+                      }
+                    },
+                    "id": 11381,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2338:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Token_$11268_storage_$dyn_storage_ptr",
+                      "typeString": "struct ITokenBundle.Token[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11385,
+                  "mutability": "mutable",
+                  "name": "numOfRewardUnits",
+                  "nameLocation": "2392:16:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11400,
+                  "src": "2373:35:61",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 11383,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2373:7:61",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 11384,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2373:9:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11387,
+                  "mutability": "mutable",
+                  "name": "packUri",
+                  "nameLocation": "2434:7:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11400,
+                  "src": "2418:23:61",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 11386,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2418:6:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11389,
+                  "mutability": "mutable",
+                  "name": "openStartTimestamp",
+                  "nameLocation": "2459:18:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11400,
+                  "src": "2451:26:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  },
+                  "typeName": {
+                    "id": 11388,
+                    "name": "uint128",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2451:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint128",
+                      "typeString": "uint128"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11391,
+                  "mutability": "mutable",
+                  "name": "amountDistributedPerOpen",
+                  "nameLocation": "2495:24:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11400,
+                  "src": "2487:32:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  },
+                  "typeName": {
+                    "id": 11390,
+                    "name": "uint128",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2487:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint128",
+                      "typeString": "uint128"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11393,
+                  "mutability": "mutable",
+                  "name": "recipient",
+                  "nameLocation": "2537:9:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11400,
+                  "src": "2529:17:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11392,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2529:7:61",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2328:224:61"
+            },
+            "returnParameters": {
+              "id": 11399,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11396,
+                  "mutability": "mutable",
+                  "name": "packId",
+                  "nameLocation": "2587:6:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11400,
+                  "src": "2579:14:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11395,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2579:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11398,
+                  "mutability": "mutable",
+                  "name": "packTotalSupply",
+                  "nameLocation": "2603:15:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11400,
+                  "src": "2595:23:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11397,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2595:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2578:41:61"
+            },
+            "scope": 11413,
+            "src": "2309:311:61",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11401,
+              "nodeType": "StructuredDocumentation",
+              "src": "2626:229:61",
+              "text": "  @notice Lets a pack owner open a pack and receive the pack's reward unit.\n  @param packId       The identifier of the pack to open.\n  @param amountToOpen The number of packs to open at once."
+            },
+            "functionSelector": "914e126a",
+            "id": 11412,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "openPack",
+            "nameLocation": "2869:8:61",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11406,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11403,
+                  "mutability": "mutable",
+                  "name": "packId",
+                  "nameLocation": "2886:6:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11412,
+                  "src": "2878:14:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11402,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2878:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11405,
+                  "mutability": "mutable",
+                  "name": "amountToOpen",
+                  "nameLocation": "2902:12:61",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11412,
+                  "src": "2894:20:61",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11404,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2894:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2877:38:61"
+            },
+            "returnParameters": {
+              "id": 11411,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11410,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11412,
+                  "src": "2934:14:61",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Token_$11268_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "struct ITokenBundle.Token[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 11408,
+                      "nodeType": "UserDefinedTypeName",
+                      "pathNode": {
+                        "id": 11407,
+                        "name": "Token",
+                        "nameLocations": [
+                          "2934:5:61"
+                        ],
+                        "nodeType": "IdentifierPath",
+                        "referencedDeclaration": 11268,
+                        "src": "2934:5:61"
+                      },
+                      "referencedDeclaration": 11268,
+                      "src": "2934:5:61",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Token_$11268_storage_ptr",
+                        "typeString": "struct ITokenBundle.Token"
+                      }
+                    },
+                    "id": 11409,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2934:7:61",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Token_$11268_storage_$dyn_storage_ptr",
+                      "typeString": "struct ITokenBundle.Token[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2933:16:61"
+            },
+            "scope": 11413,
+            "src": "2860:90:61",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11414,
+        "src": "471:2481:61",
+        "usedErrors": [],
+        "usedEvents": [
+          11355,
+          11364,
+          11377
+        ]
+      }
+    ],
+    "src": "39:2914:61"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.15",
+  "updatedAt": "2023-08-15T23:19:36.623Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "createPack((address,uint8,uint256,uint256)[],uint256[],string,uint128,uint128,address)": {
+        "params": {
+          "amountDistributedPerOpen": "The number of reward units distributed per open.",
+          "contents": "The reward units to pack in the packs.",
+          "numOfRewardUnits": "The number of reward units to create, for each asset specified in `contents`.",
+          "openStartTimestamp": "The timestamp after which packs can be opened.",
+          "packUri": "The (metadata) URI assigned to the packs created.",
+          "recipient": "The recipient of the packs created."
+        },
+        "returns": {
+          "packId": "The unique identifer of the created set of packs.",
+          "packTotalSupply": "The total number of packs created."
+        }
+      },
+      "openPack(uint256,uint256)": {
+        "params": {
+          "amountToOpen": "The number of packs to open at once.",
+          "packId": "The identifier of the pack to open."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "events": {
+      "PackCreated(uint256,address,uint256)": {
+        "notice": "Emitted when a set of packs is created."
+      },
+      "PackOpened(uint256,address,uint256,(address,uint8,uint256,uint256)[])": {
+        "notice": "Emitted when a pack is opened."
+      },
+      "PackUpdated(uint256,address,uint256)": {
+        "notice": "Emitted when more packs are minted for a packId."
+      }
+    },
+    "kind": "user",
+    "methods": {
+      "createPack((address,uint8,uint256,uint256)[],uint256[],string,uint128,uint128,address)": {
+        "notice": "Creates a pack with the stated contents."
+      },
+      "openPack(uint256,uint256)": {
+        "notice": "Lets a pack owner open a pack and receive the pack's reward unit."
+      }
+    },
+    "notice": "The thirdweb `Pack` contract is a lootbox mechanism. An account can bundle up arbitrary ERC20, ERC721 and ERC1155 tokens into  a set of packs. A pack can then be opened in return for a selection of the tokens in the pack. The selection of tokens distributed  on opening a pack depends on the relative supply of all tokens in the packs.",
+    "version": 1
+  }
+}

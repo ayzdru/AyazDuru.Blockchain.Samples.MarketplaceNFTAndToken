@@ -1,0 +1,387 @@
+{
+  "contractName": "IThirdwebContract",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "contractType",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractVersion",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_uri",
+          "type": "string"
+        }
+      ],
+      "name": "setContractURI",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"contractType\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"contractVersion\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_uri\",\"type\":\"string\"}],\"name\":\"setContractURI\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"contractType()\":{\"details\":\"Returns the module type of the contract.\"},\"contractURI()\":{\"details\":\"Returns the metadata URI of the contract.\"},\"contractVersion()\":{\"details\":\"Returns the version of the contract.\"},\"setContractURI(string)\":{\"details\":\"Sets contract URI for the storefront-level metadata of the contract.       Only module admin can call this function.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@thirdweb-dev/contracts/interfaces/IThirdwebContract.sol\":\"IThirdwebContract\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"@thirdweb-dev/contracts/interfaces/IThirdwebContract.sol\":{\"keccak256\":\"0x98ea2478723e7fd94c44f498f78e75076d306aa716ff255adf55bda2822c1e78\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://8bebec94a0c258e86877260bbecdd0b5b6052ec5de16e39f3a4b2f0ce4c0134e\",\"dweb:/ipfs/QmdVLqwwSBPiTbpLdfkcZDhHMNd1GaKgAKPE2fVk5WibrK\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.11;\n\ninterface IThirdwebContract {\n    /// @dev Returns the module type of the contract.\n    function contractType() external pure returns (bytes32);\n\n    /// @dev Returns the version of the contract.\n    function contractVersion() external pure returns (uint8);\n\n    /// @dev Returns the metadata URI of the contract.\n    function contractURI() external view returns (string memory);\n\n    /**\n     *  @dev Sets contract URI for the storefront-level metadata of the contract.\n     *       Only module admin can call this function.\n     */\n    function setContractURI(string calldata _uri) external;\n}\n",
+  "sourcePath": "@thirdweb-dev\\contracts\\interfaces\\IThirdwebContract.sol",
+  "ast": {
+    "absolutePath": "@thirdweb-dev/contracts/interfaces/IThirdwebContract.sol",
+    "exportedSymbols": {
+      "IThirdwebContract": [
+        11440
+      ]
+    },
+    "id": 11441,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11415,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:62"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IThirdwebContract",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 11440,
+        "linearizedBaseContracts": [
+          11440
+        ],
+        "name": "IThirdwebContract",
+        "nameLocation": "75:17:62",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 11416,
+              "nodeType": "StructuredDocumentation",
+              "src": "99:49:62",
+              "text": "@dev Returns the module type of the contract."
+            },
+            "functionSelector": "cb2ef6f7",
+            "id": 11421,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "contractType",
+            "nameLocation": "162:12:62",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11417,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "174:2:62"
+            },
+            "returnParameters": {
+              "id": 11420,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11419,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11421,
+                  "src": "200:7:62",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 11418,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "200:7:62",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "199:9:62"
+            },
+            "scope": 11440,
+            "src": "153:56:62",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11422,
+              "nodeType": "StructuredDocumentation",
+              "src": "215:45:62",
+              "text": "@dev Returns the version of the contract."
+            },
+            "functionSelector": "a0a8e460",
+            "id": 11427,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "contractVersion",
+            "nameLocation": "274:15:62",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11423,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "289:2:62"
+            },
+            "returnParameters": {
+              "id": 11426,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11425,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11427,
+                  "src": "315:5:62",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 11424,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "315:5:62",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "314:7:62"
+            },
+            "scope": 11440,
+            "src": "265:57:62",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11428,
+              "nodeType": "StructuredDocumentation",
+              "src": "328:50:62",
+              "text": "@dev Returns the metadata URI of the contract."
+            },
+            "functionSelector": "e8a3d485",
+            "id": 11433,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "contractURI",
+            "nameLocation": "392:11:62",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11429,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "403:2:62"
+            },
+            "returnParameters": {
+              "id": 11432,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11431,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11433,
+                  "src": "429:13:62",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 11430,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "429:6:62",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "428:15:62"
+            },
+            "scope": 11440,
+            "src": "383:61:62",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11434,
+              "nodeType": "StructuredDocumentation",
+              "src": "450:148:62",
+              "text": "  @dev Sets contract URI for the storefront-level metadata of the contract.\n       Only module admin can call this function."
+            },
+            "functionSelector": "938e3d7b",
+            "id": 11439,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setContractURI",
+            "nameLocation": "612:14:62",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11437,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11436,
+                  "mutability": "mutable",
+                  "name": "_uri",
+                  "nameLocation": "643:4:62",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11439,
+                  "src": "627:20:62",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 11435,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "627:6:62",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "626:22:62"
+            },
+            "returnParameters": {
+              "id": 11438,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "657:0:62"
+            },
+            "scope": 11440,
+            "src": "603:55:62",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11441,
+        "src": "65:595:62",
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "src": "39:622:62"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.15",
+  "updatedAt": "2023-08-15T23:19:36.624Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "contractType()": {
+        "details": "Returns the module type of the contract."
+      },
+      "contractURI()": {
+        "details": "Returns the metadata URI of the contract."
+      },
+      "contractVersion()": {
+        "details": "Returns the version of the contract."
+      },
+      "setContractURI(string)": {
+        "details": "Sets contract URI for the storefront-level metadata of the contract.       Only module admin can call this function."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

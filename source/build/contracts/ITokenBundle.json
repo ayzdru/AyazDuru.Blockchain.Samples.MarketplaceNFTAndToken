@@ -1,0 +1,390 @@
+{
+  "contractName": "ITokenBundle",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Group together arbitrary ERC20, ERC721 and ERC1155 tokens into a single bundle.  The `Token` struct is a generic type that can describe any ERC20, ERC721 or ERC1155 token.  The `Bundle` struct is a data structure to track a group/bundle of multiple assets i.e. ERC20,  ERC721 and ERC1155 tokens, each described as a `Token`.  Expressing tokens as the `Token` type, and grouping them as a `Bundle` allows for writing generic  logic to handle any ERC20, ERC721 or ERC1155 tokens.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"@thirdweb-dev/contracts/extension/interface/ITokenBundle.sol\":\"ITokenBundle\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"@thirdweb-dev/contracts/extension/interface/ITokenBundle.sol\":{\"keccak256\":\"0x4b575f4d82b4cb77b48262e2bffcc15497e52d21c38ba5614668a9cd29540949\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://496f280ff443f0466263cf06351b18a1796bfc5fe5948a7ae60316435ef564a0\",\"dweb:/ipfs/QmbAvbEe7X1oNbBDSFqPDWKmSkZC7dv4kN3aHJde2b4dV3\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.0;\n\n/// @author thirdweb\n\n/**\n *  Group together arbitrary ERC20, ERC721 and ERC1155 tokens into a single bundle.\n *\n *  The `Token` struct is a generic type that can describe any ERC20, ERC721 or ERC1155 token.\n *  The `Bundle` struct is a data structure to track a group/bundle of multiple assets i.e. ERC20,\n *  ERC721 and ERC1155 tokens, each described as a `Token`.\n *\n *  Expressing tokens as the `Token` type, and grouping them as a `Bundle` allows for writing generic\n *  logic to handle any ERC20, ERC721 or ERC1155 tokens.\n */\n\ninterface ITokenBundle {\n    /// @notice The type of assets that can be wrapped.\n    enum TokenType {\n        ERC20,\n        ERC721,\n        ERC1155\n    }\n\n    /**\n     *  @notice A generic interface to describe any ERC20, ERC721 or ERC1155 token.\n     *\n     *  @param assetContract The contract address of the asset.\n     *  @param tokenType     The token type (ERC20 / ERC721 / ERC1155) of the asset.\n     *  @param tokenId       The token Id of the asset, if the asset is an ERC721 / ERC1155 NFT.\n     *  @param totalAmount   The amount of the asset, if the asset is an ERC20 / ERC1155 fungible token.\n     */\n    struct Token {\n        address assetContract;\n        TokenType tokenType;\n        uint256 tokenId;\n        uint256 totalAmount;\n    }\n\n    /**\n     *  @notice An internal data structure to track a group / bundle of multiple assets i.e. `Token`s.\n     *\n     *  @param count    The total number of assets i.e. `Token` in a bundle.\n     *  @param uri      The (metadata) URI assigned to the bundle created\n     *  @param tokens   Mapping from a UID -> to a unique asset i.e. `Token` in the bundle.\n     */\n    struct BundleInfo {\n        uint256 count;\n        string uri;\n        mapping(uint256 => Token) tokens;\n    }\n}\n",
+  "sourcePath": "@thirdweb-dev\\contracts\\extension\\interface\\ITokenBundle.sol",
+  "ast": {
+    "absolutePath": "@thirdweb-dev/contracts/extension/interface/ITokenBundle.sol",
+    "exportedSymbols": {
+      "ITokenBundle": [
+        11280
+      ]
+    },
+    "id": 11281,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11251,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:23:59"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ITokenBundle",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 11252,
+          "nodeType": "StructuredDocumentation",
+          "src": "86:510:59",
+          "text": "  Group together arbitrary ERC20, ERC721 and ERC1155 tokens into a single bundle.\n  The `Token` struct is a generic type that can describe any ERC20, ERC721 or ERC1155 token.\n  The `Bundle` struct is a data structure to track a group/bundle of multiple assets i.e. ERC20,\n  ERC721 and ERC1155 tokens, each described as a `Token`.\n  Expressing tokens as the `Token` type, and grouping them as a `Bundle` allows for writing generic\n  logic to handle any ERC20, ERC721 or ERC1155 tokens."
+        },
+        "fullyImplemented": true,
+        "id": 11280,
+        "linearizedBaseContracts": [
+          11280
+        ],
+        "name": "ITokenBundle",
+        "nameLocation": "608:12:59",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ITokenBundle.TokenType",
+            "documentation": {
+              "id": 11253,
+              "nodeType": "StructuredDocumentation",
+              "src": "627:51:59",
+              "text": "@notice The type of assets that can be wrapped."
+            },
+            "id": 11257,
+            "members": [
+              {
+                "id": 11254,
+                "name": "ERC20",
+                "nameLocation": "708:5:59",
+                "nodeType": "EnumValue",
+                "src": "708:5:59"
+              },
+              {
+                "id": 11255,
+                "name": "ERC721",
+                "nameLocation": "723:6:59",
+                "nodeType": "EnumValue",
+                "src": "723:6:59"
+              },
+              {
+                "id": 11256,
+                "name": "ERC1155",
+                "nameLocation": "739:7:59",
+                "nodeType": "EnumValue",
+                "src": "739:7:59"
+              }
+            ],
+            "name": "TokenType",
+            "nameLocation": "688:9:59",
+            "nodeType": "EnumDefinition",
+            "src": "683:69:59"
+          },
+          {
+            "canonicalName": "ITokenBundle.Token",
+            "documentation": {
+              "id": 11258,
+              "nodeType": "StructuredDocumentation",
+              "src": "758:453:59",
+              "text": "  @notice A generic interface to describe any ERC20, ERC721 or ERC1155 token.\n  @param assetContract The contract address of the asset.\n  @param tokenType     The token type (ERC20 / ERC721 / ERC1155) of the asset.\n  @param tokenId       The token Id of the asset, if the asset is an ERC721 / ERC1155 NFT.\n  @param totalAmount   The amount of the asset, if the asset is an ERC20 / ERC1155 fungible token."
+            },
+            "id": 11268,
+            "members": [
+              {
+                "constant": false,
+                "id": 11260,
+                "mutability": "mutable",
+                "name": "assetContract",
+                "nameLocation": "1247:13:59",
+                "nodeType": "VariableDeclaration",
+                "scope": 11268,
+                "src": "1239:21:59",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11259,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1239:7:59",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11263,
+                "mutability": "mutable",
+                "name": "tokenType",
+                "nameLocation": "1280:9:59",
+                "nodeType": "VariableDeclaration",
+                "scope": 11268,
+                "src": "1270:19:59",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_TokenType_$11257",
+                  "typeString": "enum ITokenBundle.TokenType"
+                },
+                "typeName": {
+                  "id": 11262,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 11261,
+                    "name": "TokenType",
+                    "nameLocations": [
+                      "1270:9:59"
+                    ],
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 11257,
+                    "src": "1270:9:59"
+                  },
+                  "referencedDeclaration": 11257,
+                  "src": "1270:9:59",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_TokenType_$11257",
+                    "typeString": "enum ITokenBundle.TokenType"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11265,
+                "mutability": "mutable",
+                "name": "tokenId",
+                "nameLocation": "1307:7:59",
+                "nodeType": "VariableDeclaration",
+                "scope": 11268,
+                "src": "1299:15:59",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11264,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1299:7:59",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11267,
+                "mutability": "mutable",
+                "name": "totalAmount",
+                "nameLocation": "1332:11:59",
+                "nodeType": "VariableDeclaration",
+                "scope": 11268,
+                "src": "1324:19:59",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11266,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1324:7:59",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Token",
+            "nameLocation": "1223:5:59",
+            "nodeType": "StructDefinition",
+            "scope": 11280,
+            "src": "1216:134:59",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ITokenBundle.BundleInfo",
+            "documentation": {
+              "id": 11269,
+              "nodeType": "StructuredDocumentation",
+              "src": "1356:364:59",
+              "text": "  @notice An internal data structure to track a group / bundle of multiple assets i.e. `Token`s.\n  @param count    The total number of assets i.e. `Token` in a bundle.\n  @param uri      The (metadata) URI assigned to the bundle created\n  @param tokens   Mapping from a UID -> to a unique asset i.e. `Token` in the bundle."
+            },
+            "id": 11279,
+            "members": [
+              {
+                "constant": false,
+                "id": 11271,
+                "mutability": "mutable",
+                "name": "count",
+                "nameLocation": "1761:5:59",
+                "nodeType": "VariableDeclaration",
+                "scope": 11279,
+                "src": "1753:13:59",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11270,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1753:7:59",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11273,
+                "mutability": "mutable",
+                "name": "uri",
+                "nameLocation": "1783:3:59",
+                "nodeType": "VariableDeclaration",
+                "scope": 11279,
+                "src": "1776:10:59",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 11272,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1776:6:59",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11278,
+                "mutability": "mutable",
+                "name": "tokens",
+                "nameLocation": "1822:6:59",
+                "nodeType": "VariableDeclaration",
+                "scope": 11279,
+                "src": "1796:32:59",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Token_$11268_storage_$",
+                  "typeString": "mapping(uint256 => struct ITokenBundle.Token)"
+                },
+                "typeName": {
+                  "id": 11277,
+                  "keyName": "",
+                  "keyNameLocation": "-1:-1:-1",
+                  "keyType": {
+                    "id": 11274,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1804:7:59",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1796:25:59",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Token_$11268_storage_$",
+                    "typeString": "mapping(uint256 => struct ITokenBundle.Token)"
+                  },
+                  "valueName": "",
+                  "valueNameLocation": "-1:-1:-1",
+                  "valueType": {
+                    "id": 11276,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 11275,
+                      "name": "Token",
+                      "nameLocations": [
+                        "1815:5:59"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 11268,
+                      "src": "1815:5:59"
+                    },
+                    "referencedDeclaration": 11268,
+                    "src": "1815:5:59",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Token_$11268_storage_ptr",
+                      "typeString": "struct ITokenBundle.Token"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "BundleInfo",
+            "nameLocation": "1732:10:59",
+            "nodeType": "StructDefinition",
+            "scope": 11280,
+            "src": "1725:110:59",
+            "visibility": "public"
+          }
+        ],
+        "scope": 11281,
+        "src": "598:1239:59",
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "src": "39:1799:59"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.15",
+  "updatedAt": "2023-08-15T23:19:36.622Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Group together arbitrary ERC20, ERC721 and ERC1155 tokens into a single bundle.  The `Token` struct is a generic type that can describe any ERC20, ERC721 or ERC1155 token.  The `Bundle` struct is a data structure to track a group/bundle of multiple assets i.e. ERC20,  ERC721 and ERC1155 tokens, each described as a `Token`.  Expressing tokens as the `Token` type, and grouping them as a `Bundle` allows for writing generic  logic to handle any ERC20, ERC721 or ERC1155 tokens.",
+    "version": 1
+  }
+}

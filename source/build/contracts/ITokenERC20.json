@@ -1,0 +1,1415 @@
+{
+  "contractName": "ITokenERC20",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "mintedTo",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "quantityMinted",
+          "type": "uint256"
+        }
+      ],
+      "name": "TokensMinted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "signer",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "mintedTo",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "primarySaleRecipient",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "quantity",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "currency",
+              "type": "address"
+            },
+            {
+              "internalType": "uint128",
+              "name": "validityStartTimestamp",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint128",
+              "name": "validityEndTimestamp",
+              "type": "uint128"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "uid",
+              "type": "bytes32"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct ITokenERC20.MintRequest",
+          "name": "mintRequest",
+          "type": "tuple"
+        }
+      ],
+      "name": "TokensMintedWithSignature",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "primarySaleRecipient",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "quantity",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "currency",
+              "type": "address"
+            },
+            {
+              "internalType": "uint128",
+              "name": "validityStartTimestamp",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint128",
+              "name": "validityEndTimestamp",
+              "type": "uint128"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "uid",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct ITokenERC20.MintRequest",
+          "name": "req",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "verify",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "success",
+          "type": "bool"
+        },
+        {
+          "internalType": "address",
+          "name": "signer",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mintTo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "primarySaleRecipient",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "quantity",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "currency",
+              "type": "address"
+            },
+            {
+              "internalType": "uint128",
+              "name": "validityStartTimestamp",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint128",
+              "name": "validityEndTimestamp",
+              "type": "uint128"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "uid",
+              "type": "bytes32"
+            }
+          ],
+          "internalType": "struct ITokenERC20.MintRequest",
+          "name": "req",
+          "type": "tuple"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "mintWithSignature",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"mintedTo\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"quantityMinted\",\"type\":\"uint256\"}],\"name\":\"TokensMinted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"mintedTo\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"primarySaleRecipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"currency\",\"type\":\"address\"},{\"internalType\":\"uint128\",\"name\":\"validityStartTimestamp\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"validityEndTimestamp\",\"type\":\"uint128\"},{\"internalType\":\"bytes32\",\"name\":\"uid\",\"type\":\"bytes32\"}],\"indexed\":false,\"internalType\":\"struct ITokenERC20.MintRequest\",\"name\":\"mintRequest\",\"type\":\"tuple\"}],\"name\":\"TokensMintedWithSignature\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"mintTo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"primarySaleRecipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"currency\",\"type\":\"address\"},{\"internalType\":\"uint128\",\"name\":\"validityStartTimestamp\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"validityEndTimestamp\",\"type\":\"uint128\"},{\"internalType\":\"bytes32\",\"name\":\"uid\",\"type\":\"bytes32\"}],\"internalType\":\"struct ITokenERC20.MintRequest\",\"name\":\"req\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"mintWithSignature\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"primarySaleRecipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"currency\",\"type\":\"address\"},{\"internalType\":\"uint128\",\"name\":\"validityStartTimestamp\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"validityEndTimestamp\",\"type\":\"uint128\"},{\"internalType\":\"bytes32\",\"name\":\"uid\",\"type\":\"bytes32\"}],\"internalType\":\"struct ITokenERC20.MintRequest\",\"name\":\"req\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"verify\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"success\",\"type\":\"bool\"},{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"Approval(address,address,uint256)\":{\"details\":\"Emitted when the allowance of a `spender` for an `owner` is set by a call to {approve}. `value` is the new allowance.\"},\"TokensMinted(address,uint256)\":{\"details\":\"Emitted when an account with MINTER_ROLE mints an NFT.\"},\"TokensMintedWithSignature(address,address,(address,address,uint256,uint256,address,uint128,uint128,bytes32))\":{\"details\":\"Emitted when tokens are minted.\"},\"Transfer(address,address,uint256)\":{\"details\":\"Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero.\"}},\"kind\":\"dev\",\"methods\":{\"allowance(address,address)\":{\"details\":\"Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner` through {transferFrom}. This is zero by default. This value changes when {approve} or {transferFrom} are called.\"},\"approve(address,uint256)\":{\"details\":\"Sets `amount` as the allowance of `spender` over the caller's tokens. Returns a boolean value indicating whether the operation succeeded. IMPORTANT: Beware that changing an allowance with this method brings the risk that someone may use both the old and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards: https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729 Emits an {Approval} event.\"},\"balanceOf(address)\":{\"details\":\"Returns the amount of tokens owned by `account`.\"},\"decimals()\":{\"details\":\"Returns the decimals places of the token.\"},\"mintTo(address,uint256)\":{\"details\":\"Creates `amount` new tokens for `to`. See {ERC20-_mint}. Requirements: - the caller must have the `MINTER_ROLE`.\"},\"mintWithSignature((address,address,uint256,uint256,address,uint128,uint128,bytes32),bytes)\":{\"params\":{\"req\":\"The mint request.\",\"signature\":\"he signature produced by an account signing the mint request.\"}},\"name()\":{\"details\":\"Returns the name of the token.\"},\"symbol()\":{\"details\":\"Returns the symbol of the token.\"},\"totalSupply()\":{\"details\":\"Returns the amount of tokens in existence.\"},\"transfer(address,uint256)\":{\"details\":\"Moves `amount` tokens from the caller's account to `to`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"Moves `amount` tokens from `from` to `to` using the allowance mechanism. `amount` is then deducted from the caller's allowance. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.\"},\"verify((address,address,uint256,uint256,address,uint128,uint128,bytes32),bytes)\":{\"params\":{\"req\":\"The mint request.\",\"signature\":\"The signature produced by an account signing the mint request.  returns (success, signer) Result of verification and the recovered address.\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"mintWithSignature((address,address,uint256,uint256,address,uint128,uint128,bytes32),bytes)\":{\"notice\":\"Mints an NFT according to the provided mint request.\"},\"verify((address,address,uint256,uint256,address,uint128,uint128,bytes32),bytes)\":{\"notice\":\"Verifies that a mint request is signed by an account holding         MINTER_ROLE (at the time of the function call).\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@thirdweb-dev/contracts/interfaces/token/ITokenERC20.sol\":\"ITokenERC20\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol\":{\"keccak256\":\"0x4e733d3164f73f461eaf9d8087a7ad1ea180bdc8ba0d3d61b0e1ae16d8e63dff\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://75b47c3aeca7b66ea6752f8be020ec5c1c502de6ec9065272dae23d3a52196e2\",\"dweb:/ipfs/QmUebPMHv16tYKFh5BmBQkMfRFb5b8UZ2RgVwdjxCeufVF\"]},\"@openzeppelin/contracts-upgradeable/token/ERC20/extensions/IERC20MetadataUpgradeable.sol\":{\"keccak256\":\"0x605434219ebbe4653f703640f06969faa5a1d78f0bfef878e5ddbb1ca369ceeb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4c9c634f99dd02d73ce7498b03a6305e251c05eeebb71457306561c1fab0fa7d\",\"dweb:/ipfs/QmbYRBbZHy8YoaQKXdPryiL3CSS7uUaRfRYi1TUj9cTqJQ\"]},\"@thirdweb-dev/contracts/interfaces/token/ITokenERC20.sol\":{\"keccak256\":\"0xb7fd49ffa29e1614a2a142fadfb90aac0a34850853a19d36c0a0b881e10954c1\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://c8750608d122e611df0de787c51ec854d1f0c97e6d63d7a82afdf177ee66d0a7\",\"dweb:/ipfs/QmYUs8Ae91NW4CnmmeHWxmTX8NmB4eEWpZHdfPJFkfk6zA\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.11;\n\nimport \"@openzeppelin/contracts-upgradeable/token/ERC20/extensions/IERC20MetadataUpgradeable.sol\";\n\ninterface ITokenERC20 is IERC20MetadataUpgradeable {\n    /**\n     *  @notice The body of a request to mint tokens.\n     *\n     *  @param to The receiver of the tokens to mint.\n     *  @param primarySaleRecipient The receiver of the primary sale funds from the mint.\n     *  @param quantity The quantity of tpkens to mint.\n     *  @param price Price to pay for minting with the signature.\n     *  @param currency The currency in which the price per token must be paid.\n     *  @param validityStartTimestamp The unix timestamp after which the request is valid.\n     *  @param validityEndTimestamp The unix timestamp after which the request expires.\n     *  @param uid A unique identifier for the request.\n     */\n    struct MintRequest {\n        address to;\n        address primarySaleRecipient;\n        uint256 quantity;\n        uint256 price;\n        address currency;\n        uint128 validityStartTimestamp;\n        uint128 validityEndTimestamp;\n        bytes32 uid;\n    }\n\n    /// @dev Emitted when an account with MINTER_ROLE mints an NFT.\n    event TokensMinted(address indexed mintedTo, uint256 quantityMinted);\n\n    /// @dev Emitted when tokens are minted.\n    event TokensMintedWithSignature(address indexed signer, address indexed mintedTo, MintRequest mintRequest);\n\n    /**\n     *  @notice Verifies that a mint request is signed by an account holding\n     *         MINTER_ROLE (at the time of the function call).\n     *\n     *  @param req The mint request.\n     *  @param signature The signature produced by an account signing the mint request.\n     *\n     *  returns (success, signer) Result of verification and the recovered address.\n     */\n    function verify(MintRequest calldata req, bytes calldata signature)\n        external\n        view\n        returns (bool success, address signer);\n\n    /**\n     * @dev Creates `amount` new tokens for `to`.\n     *\n     * See {ERC20-_mint}.\n     *\n     * Requirements:\n     *\n     * - the caller must have the `MINTER_ROLE`.\n     */\n    function mintTo(address to, uint256 amount) external;\n\n    /**\n     *  @notice Mints an NFT according to the provided mint request.\n     *\n     *  @param req The mint request.\n     *  @param signature he signature produced by an account signing the mint request.\n     */\n    function mintWithSignature(MintRequest calldata req, bytes calldata signature) external payable;\n}\n",
+  "sourcePath": "@thirdweb-dev\\contracts\\interfaces\\token\\ITokenERC20.sol",
+  "ast": {
+    "absolutePath": "@thirdweb-dev/contracts/interfaces/token/ITokenERC20.sol",
+    "exportedSymbols": {
+      "IERC20MetadataUpgradeable": [
+        4012
+      ],
+      "IERC20Upgradeable": [
+        3266
+      ],
+      "ITokenERC20": [
+        11857
+      ]
+    },
+    "id": 11858,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11788,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:66"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/IERC20MetadataUpgradeable.sol",
+        "file": "@openzeppelin/contracts-upgradeable/token/ERC20/extensions/IERC20MetadataUpgradeable.sol",
+        "id": 11789,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 11858,
+        "sourceUnit": 4013,
+        "src": "65:98:66",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 11790,
+              "name": "IERC20MetadataUpgradeable",
+              "nameLocations": [
+                "190:25:66"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 4012,
+              "src": "190:25:66"
+            },
+            "id": 11791,
+            "nodeType": "InheritanceSpecifier",
+            "src": "190:25:66"
+          }
+        ],
+        "canonicalName": "ITokenERC20",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 11857,
+        "linearizedBaseContracts": [
+          11857,
+          4012,
+          3266
+        ],
+        "name": "ITokenERC20",
+        "nameLocation": "175:11:66",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ITokenERC20.MintRequest",
+            "documentation": {
+              "id": 11792,
+              "nodeType": "StructuredDocumentation",
+              "src": "222:653:66",
+              "text": "  @notice The body of a request to mint tokens.\n  @param to The receiver of the tokens to mint.\n  @param primarySaleRecipient The receiver of the primary sale funds from the mint.\n  @param quantity The quantity of tpkens to mint.\n  @param price Price to pay for minting with the signature.\n  @param currency The currency in which the price per token must be paid.\n  @param validityStartTimestamp The unix timestamp after which the request is valid.\n  @param validityEndTimestamp The unix timestamp after which the request expires.\n  @param uid A unique identifier for the request."
+            },
+            "id": 11809,
+            "members": [
+              {
+                "constant": false,
+                "id": 11794,
+                "mutability": "mutable",
+                "name": "to",
+                "nameLocation": "917:2:66",
+                "nodeType": "VariableDeclaration",
+                "scope": 11809,
+                "src": "909:10:66",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11793,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "909:7:66",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11796,
+                "mutability": "mutable",
+                "name": "primarySaleRecipient",
+                "nameLocation": "937:20:66",
+                "nodeType": "VariableDeclaration",
+                "scope": 11809,
+                "src": "929:28:66",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11795,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "929:7:66",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11798,
+                "mutability": "mutable",
+                "name": "quantity",
+                "nameLocation": "975:8:66",
+                "nodeType": "VariableDeclaration",
+                "scope": 11809,
+                "src": "967:16:66",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11797,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "967:7:66",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11800,
+                "mutability": "mutable",
+                "name": "price",
+                "nameLocation": "1001:5:66",
+                "nodeType": "VariableDeclaration",
+                "scope": 11809,
+                "src": "993:13:66",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 11799,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "993:7:66",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11802,
+                "mutability": "mutable",
+                "name": "currency",
+                "nameLocation": "1024:8:66",
+                "nodeType": "VariableDeclaration",
+                "scope": 11809,
+                "src": "1016:16:66",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 11801,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1016:7:66",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11804,
+                "mutability": "mutable",
+                "name": "validityStartTimestamp",
+                "nameLocation": "1050:22:66",
+                "nodeType": "VariableDeclaration",
+                "scope": 11809,
+                "src": "1042:30:66",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint128",
+                  "typeString": "uint128"
+                },
+                "typeName": {
+                  "id": 11803,
+                  "name": "uint128",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1042:7:66",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11806,
+                "mutability": "mutable",
+                "name": "validityEndTimestamp",
+                "nameLocation": "1090:20:66",
+                "nodeType": "VariableDeclaration",
+                "scope": 11809,
+                "src": "1082:28:66",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint128",
+                  "typeString": "uint128"
+                },
+                "typeName": {
+                  "id": 11805,
+                  "name": "uint128",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1082:7:66",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 11808,
+                "mutability": "mutable",
+                "name": "uid",
+                "nameLocation": "1128:3:66",
+                "nodeType": "VariableDeclaration",
+                "scope": 11809,
+                "src": "1120:11:66",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 11807,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1120:7:66",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "MintRequest",
+            "nameLocation": "887:11:66",
+            "nodeType": "StructDefinition",
+            "scope": 11857,
+            "src": "880:258:66",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11810,
+              "nodeType": "StructuredDocumentation",
+              "src": "1144:63:66",
+              "text": "@dev Emitted when an account with MINTER_ROLE mints an NFT."
+            },
+            "eventSelector": "3f2c9d57c068687834f0de942a9babb9e5acab57d516d3480a3c16ee165a4273",
+            "id": 11816,
+            "name": "TokensMinted",
+            "nameLocation": "1218:12:66",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11815,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11812,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "mintedTo",
+                  "nameLocation": "1247:8:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11816,
+                  "src": "1231:24:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11811,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1231:7:66",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11814,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "quantityMinted",
+                  "nameLocation": "1265:14:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11816,
+                  "src": "1257:22:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11813,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1257:7:66",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1230:50:66"
+            },
+            "src": "1212:69:66"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 11817,
+              "nodeType": "StructuredDocumentation",
+              "src": "1287:40:66",
+              "text": "@dev Emitted when tokens are minted."
+            },
+            "eventSelector": "c4d88b1adde72eb5acf63f3e219ef5b223262233acf507c3b171277c91973c67",
+            "id": 11826,
+            "name": "TokensMintedWithSignature",
+            "nameLocation": "1338:25:66",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 11825,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11819,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "signer",
+                  "nameLocation": "1380:6:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11826,
+                  "src": "1364:22:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11818,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1364:7:66",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11821,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "mintedTo",
+                  "nameLocation": "1404:8:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11826,
+                  "src": "1388:24:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11820,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1388:7:66",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11824,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "mintRequest",
+                  "nameLocation": "1426:11:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11826,
+                  "src": "1414:23:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_MintRequest_$11809_memory_ptr",
+                    "typeString": "struct ITokenERC20.MintRequest"
+                  },
+                  "typeName": {
+                    "id": 11823,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 11822,
+                      "name": "MintRequest",
+                      "nameLocations": [
+                        "1414:11:66"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 11809,
+                      "src": "1414:11:66"
+                    },
+                    "referencedDeclaration": 11809,
+                    "src": "1414:11:66",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_MintRequest_$11809_storage_ptr",
+                      "typeString": "struct ITokenERC20.MintRequest"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1363:75:66"
+            },
+            "src": "1332:107:66"
+          },
+          {
+            "documentation": {
+              "id": 11827,
+              "nodeType": "StructuredDocumentation",
+              "src": "1445:374:66",
+              "text": "  @notice Verifies that a mint request is signed by an account holding\n         MINTER_ROLE (at the time of the function call).\n  @param req The mint request.\n  @param signature The signature produced by an account signing the mint request.\n  returns (success, signer) Result of verification and the recovered address."
+            },
+            "functionSelector": "c1b606e2",
+            "id": 11839,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "verify",
+            "nameLocation": "1833:6:66",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11833,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11830,
+                  "mutability": "mutable",
+                  "name": "req",
+                  "nameLocation": "1861:3:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11839,
+                  "src": "1840:24:66",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_MintRequest_$11809_calldata_ptr",
+                    "typeString": "struct ITokenERC20.MintRequest"
+                  },
+                  "typeName": {
+                    "id": 11829,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 11828,
+                      "name": "MintRequest",
+                      "nameLocations": [
+                        "1840:11:66"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 11809,
+                      "src": "1840:11:66"
+                    },
+                    "referencedDeclaration": 11809,
+                    "src": "1840:11:66",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_MintRequest_$11809_storage_ptr",
+                      "typeString": "struct ITokenERC20.MintRequest"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11832,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "1881:9:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11839,
+                  "src": "1866:24:66",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 11831,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1866:5:66",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1839:52:66"
+            },
+            "returnParameters": {
+              "id": 11838,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11835,
+                  "mutability": "mutable",
+                  "name": "success",
+                  "nameLocation": "1944:7:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11839,
+                  "src": "1939:12:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 11834,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1939:4:66",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11837,
+                  "mutability": "mutable",
+                  "name": "signer",
+                  "nameLocation": "1961:6:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11839,
+                  "src": "1953:14:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11836,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1953:7:66",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1938:30:66"
+            },
+            "scope": 11857,
+            "src": "1824:145:66",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11840,
+              "nodeType": "StructuredDocumentation",
+              "src": "1975:178:66",
+              "text": " @dev Creates `amount` new tokens for `to`.\n See {ERC20-_mint}.\n Requirements:\n - the caller must have the `MINTER_ROLE`."
+            },
+            "functionSelector": "449a52f8",
+            "id": 11847,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mintTo",
+            "nameLocation": "2167:6:66",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11845,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11842,
+                  "mutability": "mutable",
+                  "name": "to",
+                  "nameLocation": "2182:2:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11847,
+                  "src": "2174:10:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 11841,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2174:7:66",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11844,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "2194:6:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11847,
+                  "src": "2186:14:66",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11843,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2186:7:66",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2173:28:66"
+            },
+            "returnParameters": {
+              "id": 11846,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2210:0:66"
+            },
+            "scope": 11857,
+            "src": "2158:53:66",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 11848,
+              "nodeType": "StructuredDocumentation",
+              "src": "2217:211:66",
+              "text": "  @notice Mints an NFT according to the provided mint request.\n  @param req The mint request.\n  @param signature he signature produced by an account signing the mint request."
+            },
+            "functionSelector": "8f0fefbb",
+            "id": 11856,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mintWithSignature",
+            "nameLocation": "2442:17:66",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11854,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11851,
+                  "mutability": "mutable",
+                  "name": "req",
+                  "nameLocation": "2481:3:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11856,
+                  "src": "2460:24:66",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_MintRequest_$11809_calldata_ptr",
+                    "typeString": "struct ITokenERC20.MintRequest"
+                  },
+                  "typeName": {
+                    "id": 11850,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 11849,
+                      "name": "MintRequest",
+                      "nameLocations": [
+                        "2460:11:66"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 11809,
+                      "src": "2460:11:66"
+                    },
+                    "referencedDeclaration": 11809,
+                    "src": "2460:11:66",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_MintRequest_$11809_storage_ptr",
+                      "typeString": "struct ITokenERC20.MintRequest"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11853,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "2501:9:66",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11856,
+                  "src": "2486:24:66",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 11852,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2486:5:66",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2459:52:66"
+            },
+            "returnParameters": {
+              "id": 11855,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2528:0:66"
+            },
+            "scope": 11857,
+            "src": "2433:96:66",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11858,
+        "src": "165:2366:66",
+        "usedErrors": [],
+        "usedEvents": [
+          3200,
+          3209,
+          11816,
+          11826
+        ]
+      }
+    ],
+    "src": "39:2493:66"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.15",
+  "updatedAt": "2023-08-15T23:19:36.630Z",
+  "devdoc": {
+    "events": {
+      "Approval(address,address,uint256)": {
+        "details": "Emitted when the allowance of a `spender` for an `owner` is set by a call to {approve}. `value` is the new allowance."
+      },
+      "TokensMinted(address,uint256)": {
+        "details": "Emitted when an account with MINTER_ROLE mints an NFT."
+      },
+      "TokensMintedWithSignature(address,address,(address,address,uint256,uint256,address,uint128,uint128,bytes32))": {
+        "details": "Emitted when tokens are minted."
+      },
+      "Transfer(address,address,uint256)": {
+        "details": "Emitted when `value` tokens are moved from one account (`from`) to another (`to`). Note that `value` may be zero."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "allowance(address,address)": {
+        "details": "Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner` through {transferFrom}. This is zero by default. This value changes when {approve} or {transferFrom} are called."
+      },
+      "approve(address,uint256)": {
+        "details": "Sets `amount` as the allowance of `spender` over the caller's tokens. Returns a boolean value indicating whether the operation succeeded. IMPORTANT: Beware that changing an allowance with this method brings the risk that someone may use both the old and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards: https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729 Emits an {Approval} event."
+      },
+      "balanceOf(address)": {
+        "details": "Returns the amount of tokens owned by `account`."
+      },
+      "decimals()": {
+        "details": "Returns the decimals places of the token."
+      },
+      "mintTo(address,uint256)": {
+        "details": "Creates `amount` new tokens for `to`. See {ERC20-_mint}. Requirements: - the caller must have the `MINTER_ROLE`."
+      },
+      "mintWithSignature((address,address,uint256,uint256,address,uint128,uint128,bytes32),bytes)": {
+        "params": {
+          "req": "The mint request.",
+          "signature": "he signature produced by an account signing the mint request."
+        }
+      },
+      "name()": {
+        "details": "Returns the name of the token."
+      },
+      "symbol()": {
+        "details": "Returns the symbol of the token."
+      },
+      "totalSupply()": {
+        "details": "Returns the amount of tokens in existence."
+      },
+      "transfer(address,uint256)": {
+        "details": "Moves `amount` tokens from the caller's account to `to`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event."
+      },
+      "transferFrom(address,address,uint256)": {
+        "details": "Moves `amount` tokens from `from` to `to` using the allowance mechanism. `amount` is then deducted from the caller's allowance. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event."
+      },
+      "verify((address,address,uint256,uint256,address,uint128,uint128,bytes32),bytes)": {
+        "params": {
+          "req": "The mint request.",
+          "signature": "The signature produced by an account signing the mint request.  returns (success, signer) Result of verification and the recovered address."
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "mintWithSignature((address,address,uint256,uint256,address,uint128,uint128,bytes32),bytes)": {
+        "notice": "Mints an NFT according to the provided mint request."
+      },
+      "verify((address,address,uint256,uint256,address,uint128,uint128,bytes32),bytes)": {
+        "notice": "Verifies that a mint request is signed by an account holding         MINTER_ROLE (at the time of the function call)."
+      }
+    },
+    "version": 1
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "contractName": "FeeType",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"author\":\"thirdweb\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@thirdweb-dev/contracts/lib/FeeType.sol\":\"FeeType\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"@thirdweb-dev/contracts/lib/FeeType.sol\":{\"keccak256\":\"0xf796f4f6126beb66821215c7bd0477c9aa39c986ba44a2001158f03e21b49381\",\"license\":\"Apache-2.0\",\"urls\":[\"bzz-raw://2bf468022e505664a9e256cd01b62960542ee299c0dadfb567c5204d28b45657\",\"dweb:/ipfs/QmQUBaCm6SnaPgNxHEvx3DwmqeGNPvYsY4goxTHCzoMspP\"]}},\"version\":1}",
+  "bytecode": "0x60556032600b8282823980515f1a607314602657634e487b7160e01b5f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f80fdfea2646970667358221220b45b1a6b2dd4fea6fa38e5f3e75d77d259f714d21bf12a4a9dce4b12d9e6a2de64736f6c63430008150033",
+  "deployedBytecode": "0x730000000000000000000000000000000000000000301460806040525f80fdfea2646970667358221220b45b1a6b2dd4fea6fa38e5f3e75d77d259f714d21bf12a4a9dce4b12d9e6a2de64736f6c63430008150033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "87:155:68:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;87:155:68;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "87:155:68:-:0;;;;;;;;",
+  "source": "// SPDX-License-Identifier: Apache-2.0\npragma solidity ^0.8.11;\n\n/// @author thirdweb\n\nlibrary FeeType {\n    uint256 internal constant PRIMARY_SALE = 0;\n    uint256 internal constant MARKET_SALE = 1;\n    uint256 internal constant SPLIT = 2;\n}\n",
+  "sourcePath": "@thirdweb-dev\\contracts\\lib\\FeeType.sol",
+  "ast": {
+    "absolutePath": "@thirdweb-dev/contracts/lib/FeeType.sol",
+    "exportedSymbols": {
+      "FeeType": [
+        12115
+      ]
+    },
+    "id": 12116,
+    "license": "Apache-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12104,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:68"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "FeeType",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": {
+          "id": 12105,
+          "nodeType": "StructuredDocumentation",
+          "src": "65:21:68",
+          "text": "@author thirdweb"
+        },
+        "fullyImplemented": true,
+        "id": 12115,
+        "linearizedBaseContracts": [
+          12115
+        ],
+        "name": "FeeType",
+        "nameLocation": "95:7:68",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 12108,
+            "mutability": "constant",
+            "name": "PRIMARY_SALE",
+            "nameLocation": "135:12:68",
+            "nodeType": "VariableDeclaration",
+            "scope": 12115,
+            "src": "109:42:68",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 12106,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "109:7:68",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "30",
+              "id": 12107,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "150:1:68",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_0_by_1",
+                "typeString": "int_const 0"
+              },
+              "value": "0"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": true,
+            "id": 12111,
+            "mutability": "constant",
+            "name": "MARKET_SALE",
+            "nameLocation": "183:11:68",
+            "nodeType": "VariableDeclaration",
+            "scope": 12115,
+            "src": "157:41:68",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 12109,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "157:7:68",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "31",
+              "id": 12110,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "197:1:68",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_1_by_1",
+                "typeString": "int_const 1"
+              },
+              "value": "1"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": true,
+            "id": 12114,
+            "mutability": "constant",
+            "name": "SPLIT",
+            "nameLocation": "230:5:68",
+            "nodeType": "VariableDeclaration",
+            "scope": 12115,
+            "src": "204:35:68",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 12112,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "204:7:68",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "32",
+              "id": 12113,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "238:1:68",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_2_by_1",
+                "typeString": "int_const 2"
+              },
+              "value": "2"
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 12116,
+        "src": "87:155:68",
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "src": "39:204:68"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.15",
+  "updatedAt": "2023-08-15T23:19:36.633Z",
+  "devdoc": {
+    "author": "thirdweb",
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
